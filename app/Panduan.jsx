@@ -5,7 +5,7 @@ import Constants from "expo-constants";
 
 export default function Panduan() {
   return (
-    <LinearGradient colors={["#00B4D8", "white"]}>
+    <LinearGradient colors={["#90e0ef", "#1AA7EC"]}>
       <View style={{ height: "100%" }}>
         <View style={{ marginTop: Constants.statusBarHeight }}>
           <Text>Panduan</Text>
