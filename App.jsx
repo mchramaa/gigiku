@@ -11,7 +11,7 @@ const App = () => {
     <View style={styles.container}>
       <StatusBar style={"dark"} />
       <View style={{ flex: 1 }}>
-        <NavigationContainer>
+        <NavigationContainer style={styles.NavCon}>
           <Tabs />
         </NavigationContainer>
       </View>
@@ -26,5 +26,8 @@ const styles = StyleSheet.create({
     flex: 1,
     // marginTop: Constants.statusBarHeight,
     backgroundColor: "white",
+  },
+  NavCon: {
+    backgroundColor: "blue",
   },
 });
