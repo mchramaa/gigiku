@@ -37,13 +37,6 @@ export default function Tabs() {
     TabHeight = 60;
   }
 
-  let FontTabBar;
-  if (Platform.OS === "ios") {
-    marginBottom = 10;
-  } else if (Platform.OS === "android") {
-    marginBottom = 500;
-  }
-
   return (
     <Tab.Navigator
       initialRouteName="Home"
