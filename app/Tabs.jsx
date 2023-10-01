@@ -1,7 +1,7 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-// import { MaterialCommunityIcons } from "@expo/vector-icons";
-// import { AntDesign, MaterialIcons } from "@expo/vector-icons";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { AntDesign, MaterialIcons } from "@expo/vector-icons";
 import Home from "./Home";
 import Panduan from "./Panduan";
 import Alarm from "./Alarm";
@@ -14,19 +14,19 @@ export default function Tabs() {
     {
       id: "Panduan",
       component: Panduan,
-      // icon: (
-      //   <MaterialCommunityIcons name="tooth-outline" size={30} color="black" />
-      // ),
+      icon: (
+        <MaterialCommunityIcons name="tooth-outline" size={30} color="black" />
+      ),
     },
     {
       id: "Home",
       component: Home,
-      // icon: <AntDesign name="home" size={30} />,
+      icon: <AntDesign name="home" size={30} />,
     },
     {
       id: "Alarm",
       component: Alarm,
-      // icon: <MaterialIcons name="access-alarm" size={25} />,
+      icon: <MaterialIcons name="access-alarm" size={25} />,
     },
   ];
 
@@ -50,8 +50,6 @@ export default function Tabs() {
       screenOptions={{
         tabBarShowLabel: false,
         headerShown: false,
-        // tabBarLabel: ({ focused }) => (focused ? true : false),
-
         tabBarStyle: {
           shadowOpacity: 0.35,
           shadowOffset: { width: 0, height: -2 },
@@ -77,7 +75,7 @@ export default function Tabs() {
                       style={
                         focused
                           ? {
-                              backgroundColor: "#00B4D8",
+                              backgroundColor: "#1AA7EC",
                               alignItems: "center",
                               justifyContent: "center",
                               width: 60,
