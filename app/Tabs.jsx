@@ -1,7 +1,7 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { AntDesign, MaterialIcons } from "@expo/vector-icons";
+// import { MaterialCommunityIcons } from "@expo/vector-icons";
+// import { AntDesign, MaterialIcons } from "@expo/vector-icons";
 import Home from "./Home";
 import Panduan from "./Panduan";
 import Alarm from "./Alarm";
@@ -14,19 +14,19 @@ export default function Tabs() {
     {
       id: "Panduan",
       component: Panduan,
-      icon: (
-        <MaterialCommunityIcons name="tooth-outline" size={30} color="black" />
-      ),
+      // icon: (
+      //   <MaterialCommunityIcons name="tooth-outline" size={30} color="black" />
+      // ),
     },
     {
       id: "Home",
       component: Home,
-      icon: <AntDesign name="home" size={30} />,
+      // icon: <AntDesign name="home" size={30} />,
     },
     {
       id: "Alarm",
       component: Alarm,
-      icon: <MaterialIcons name="access-alarm" size={25} />,
+      // icon: <MaterialIcons name="access-alarm" size={25} />,
     },
   ];
 
