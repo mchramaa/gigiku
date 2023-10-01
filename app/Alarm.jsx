@@ -80,7 +80,7 @@ export default function Alarm() {
                 paddingBottom: 50,
               }}
             >
-              <ScrollView>
+              <ScrollView showsVerticalScrollIndicator={false}>
                 {AlarmData.map((data, index) => (
                   <View
                     key={index}
