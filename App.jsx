@@ -18,7 +18,7 @@ const App = () => {
             <Stack.Screen
               name="Tabs"
               component={Tabs}
-              options={{ headerShown: false }}
+              options={{ headerShown: false, title: "Home" }}
             />
             <Stack.Screen name="Profile" component={Profile} />
           </Stack.Navigator>

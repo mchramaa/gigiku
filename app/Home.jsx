@@ -3,7 +3,7 @@ import { View } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import Constants from "expo-constants";
 import { Ionicons } from "@expo/vector-icons";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
 import { useNavigation } from "@react-navigation/native";
 import GigiMaskotSVG from "../assets/icon/GigiMaskotSVG";
 
@@ -77,7 +77,7 @@ export default function Home() {
           <View
             style={{
               backgroundColor: "white",
-              height: 300,
+              height: "38%",
               borderRadius: 15,
               elevation: 10,
               shadowRadius: 3.84,
