@@ -6,6 +6,7 @@ import Tabs from "./app/Tabs";
 import { StyleSheet } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
 import Profile from "./app/Profile";
+import * as SQLite from "expo-sqlite";
 
 const Stack = createStackNavigator();
 const App = () => {
