@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { ImageBackground, StyleSheet, Text, View } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { ScrollView } from "react-native-gesture-handler";
@@ -98,5 +98,8 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     padding: 45,
     bottom: -200,
+  },
+  hidden: {
+    display: "none",
   },
 });

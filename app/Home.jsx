@@ -84,7 +84,9 @@ export default function Home() {
               shadowOffset: { height: 4 },
               shadowOpacity: 0.3,
             }}
-          ></View>
+          >
+            <Text>Rama</Text>
+          </View>
         </View>
       </View>
     </LinearGradient>
