@@ -1,18 +1,17 @@
-import { View, Text, TextInput } from "react-native";
+import { View, Text, TextInput, TouchableOpacity } from "react-native";
 import React from "react";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import TimePicker from "./components/TimePicker";
+import useAlarm from "./hooks/useAlarm";
 
-export default function TabSetName(props) {
+const SetAlarm = ({ navigation }) => {
+  const { handleSelectedTime, handleInputTag, handleButtonSubmitAlarm } =
+    useAlarm(navigation);
+
   return (
-    <View
-      style={{
-        justifyContent: "center",
-        alignItems: "center",
-        width: "100%",
-      }}
-    >
+    <View>
+      <TimePicker handleSelectedTime={handleSelectedTime} />
       <TextInput
-        placeholder="Masukkan Nama"
+        placeholder="Masukkan Tag"
         style={{
           height: 50,
           width: 250,
@@ -22,10 +21,9 @@ export default function TabSetName(props) {
           paddingHorizontal: 20,
           fontSize: 20,
         }}
-        onChangeText={props.handleInputName}
-        defaultValue={props.name}
+        onChangeText={handleInputTag}
       />
-      <TouchableOpacity onPress={props.onPress}>
+      <TouchableOpacity onPress={handleButtonSubmitAlarm}>
         <View
           style={{
             marginTop: 15,
@@ -39,10 +37,12 @@ export default function TabSetName(props) {
           }}
         >
           <Text style={{ fontWeight: "bold", fontSize: 20, color: "white" }}>
-            {props.buttonName}
+            Simpan
           </Text>
         </View>
       </TouchableOpacity>
     </View>
   );
-}
+};
+
+export default SetAlarm;

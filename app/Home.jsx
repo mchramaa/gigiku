@@ -6,9 +6,10 @@ import { Ionicons } from "@expo/vector-icons";
 import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
 import { useNavigation } from "@react-navigation/native";
 import GigiMaskotSVG from "../assets/icon/GigiMaskotSVG";
+import { useAuth } from "./hooks/useAuth.zustand";
 
 export default function Home() {
-  let userName = ["User"];
+  const { user } = useAuth();
   const quoteStart = ["RAWAT GIGIMU SEKARANG"];
   const quoteEnd = ["DAN NIKMATI SENYUM SEUMUR HIDUPMU"];
 
@@ -41,7 +42,7 @@ export default function Home() {
                 fontWeight: 700,
               }}
             >
-              Hallo {userName},
+              Hallo {user.name},
             </Text>
             <TouchableOpacity onPress={ProfileButton}>
               <Ionicons

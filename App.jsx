@@ -1,5 +1,5 @@
 import { View } from "react-native";
-import React from "react";
+import React, { useEffect } from "react";
 import { StatusBar } from "expo-status-bar";
 import { NavigationContainer } from "@react-navigation/native";
 import Tabs from "./app/Tabs";
@@ -7,9 +7,86 @@ import { StyleSheet } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
 import Profile from "./app/Profile";
 import * as SQLite from "expo-sqlite";
+import { useAuth } from "./app/hooks/useAuth.zustand";
+import SetAlarm from "./app/SetAlarm";
 
 const Stack = createStackNavigator();
 const App = () => {
+  const { setUser } = useAuth();
+
+  const db = SQLite.openDatabase("gigiku.db");
+  function initDatabase() {
+    db.transaction((tx) => {
+      tx.executeSql(
+        "CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, name VARCHAR(255) NOT NULL);",
+        [],
+        () => console.log("Users Table created successfully"),
+        (error) => {
+          if (error) {
+            console.error("Error creating table: ", error);
+          }
+        }
+      );
+      tx.executeSql(
+        "CREATE TABLE IF NOT EXISTS alarms (id INTEGER PRIMARY KEY AUTOINCREMENT, tag VARCHAR(255) NOT NULL, hours VARCHAR(255) NOT NULL, minute VARCHAR(255) NOT NULL);",
+        [],
+        () => console.log("Alarms Table created successfully"),
+        (error) => {
+          if (error) {
+            console.error("Error creating table: ", error);
+          }
+        }
+      );
+    });
+  }
+
+  function getUserData() {
+    return new Promise((resolve, reject) => {
+      db.transaction((tx) => {
+        tx.executeSql(
+          "SELECT * FROM users",
+          [],
+          (_, { rows }) => {
+            const userRows = rows._array;
+            resolve(userRows);
+          },
+          (error) => {
+            reject(error);
+          }
+        );
+      });
+    });
+  }
+
+  const emptyTable = () => {
+    db.transaction((tx) => {
+      tx.executeSql(
+        "DELETE FROM alarms",
+        [],
+        (_, result) => {
+          console.log("Table emptied successfully");
+        },
+        (error) => {
+          console.error("Error while emptying the table:", error);
+        }
+      );
+    });
+  };
+
+  useEffect(() => {
+    emptyTable();
+    getUserData()
+      .then((userRows) => {
+        if (userRows.length > 0) {
+          setUser({ id: userRows[0].id, name: userRows[0].name });
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+
+    initDatabase();
+  }, []);
   return (
     <View style={styles.container}>
       <StatusBar style={"dark"} />
@@ -22,6 +99,7 @@ const App = () => {
               options={{ headerShown: false, title: "Home" }}
             />
             <Stack.Screen name="Profile" component={Profile} />
+            <Stack.Screen name="SetAlarm" component={SetAlarm} />
           </Stack.Navigator>
         </NavigationContainer>
       </View>

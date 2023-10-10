@@ -6,25 +6,28 @@ import RefGigiMaskotSVG from "../assets/icon/RefGigiMaskotSVG";
 import { MaterialIcons } from "@expo/vector-icons";
 import { ScrollView } from "react-native-gesture-handler";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import useAlarm from "./hooks/useAlarm";
 
-export default function Alarm() {
+export default function Alarm({ navigation }) {
+  const { AlarmData } = useAlarm();
   const textUp = ["Jangan Lupa !!"];
   const textDown = ["Pasang alarm sikat gigi ya...."];
 
-  let AlarmData = [
-    { id: 1, Tag: "Sikat Gigi Pagi", hours: "04", minute: "30" },
-    { id: 2, Tag: "Sikat Gigi Malam", hours: "20", minute: "59" },
-    { id: 3, Tag: "Sikat Gigi Pagiawdawd", hours: "20", minute: "59" },
-    { id: 4, Tag: "Sikat Gigi Pagi", hours: "20", minute: "59" },
-    { id: 1, Tag: "Sikat Gigi Pagi", hours: "04", minute: "30" },
-    { id: 2, Tag: "Sikat Gigi Malam", hours: "20", minute: "59" },
-    { id: 3, Tag: "Sikat Gigi Pagiawdawd", hours: "20", minute: "59" },
-    { id: 4, Tag: "Sikat Gigi Pagi", hours: "20", minute: "59" },
-    { id: 1, Tag: "Sikat Gigi Pagi", hours: "04", minute: "30" },
-    { id: 2, Tag: "Sikat Gigi Malam", hours: "20", minute: "59" },
-    { id: 3, Tag: "Sikat Gigi Pagiawdawd", hours: "20", minute: "59" },
-    { id: 4, Tag: "Sikat Gigi Pagi", hours: "20", minute: "59" },
-  ];
+  // let AlarmData = [
+  //   { id: 1, Tag: "Sikat Gigi Pagi", hours: "04", minute: "30" },
+  //   { id: 2, Tag: "Sikat Gigi Malam", hours: "20", minute: "59" },
+  //   { id: 3, Tag: "Sikat Gigi Pagiawdawd", hours: "20", minute: "59" },
+  //   { id: 4, Tag: "Sikat Gigi Pagi", hours: "20", minute: "59" },
+  //   { id: 1, Tag: "Sikat Gigi Pagi", hours: "04", minute: "30" },
+  //   { id: 2, Tag: "Sikat Gigi Malam", hours: "20", minute: "59" },
+  //   { id: 3, Tag: "Sikat Gigi Pagiawdawd", hours: "20", minute: "59" },
+  //   { id: 4, Tag: "Sikat Gigi Pagi", hours: "20", minute: "59" },
+  //   { id: 1, Tag: "Sikat Gigi Pagi", hours: "04", minute: "30" },
+  //   { id: 2, Tag: "Sikat Gigi Malam", hours: "20", minute: "59" },
+  //   { id: 3, Tag: "Sikat Gigi Pagiawdawd", hours: "20", minute: "59" },
+  //   { id: 4, Tag: "Sikat Gigi Pagi", hours: "20", minute: "59" },
+  // ];
+
   return (
     <LinearGradient colors={["#1AA7EC", "#90e0ef"]}>
       <View style={{ height: "100%" }}>
@@ -108,7 +111,7 @@ export default function Alarm() {
                       }}
                     >
                       <Text style={{ fontSize: 21, fontWeight: "600" }}>
-                        {data.Tag}
+                        {data.tag}
                       </Text>
 
                       <View
@@ -137,7 +140,7 @@ export default function Alarm() {
                 ))}
               </ScrollView>
             </View>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate("SetAlarm")}>
               <View
                 style={{
                   position: "absolute",

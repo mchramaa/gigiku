@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ImageBackground, StyleSheet, Text, View } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { ScrollView } from "react-native-gesture-handler";
@@ -11,24 +11,67 @@ import Animated, {
 
 import BlueButton from "./components/BlueButton";
 import TabSetName from "./components/TabSetName";
+import * as SQLite from "expo-sqlite";
+import { useAuth } from "./hooks/useAuth.zustand";
 
 export default function Profile() {
+  /**
+   * initialization
+   */
+  const db = SQLite.openDatabase("gigiku.db");
   const avatar = require("../assets/avatar.png");
-
   const translateY = useSharedValue(0);
+  /** */
 
+  /**
+   * STATE
+   */
+  const { user, setUser } = useAuth();
+  const [name, setName] = useState(user.name);
+  /** */
+
+  /**
+   * DB QUERY
+   */
+
+  function updateUser(nameParams) {
+    db.transaction((tx) => {
+      tx.executeSql(
+        "UPDATE users SET name = ? WHERE id = ?",
+        [name, user.id],
+        (_, { rowsAffected }) => {
+          if (rowsAffected > 0) {
+            setUser({ id: user.id, name: nameParams });
+          } else {
+            reject(new Error("User not found"));
+          }
+        },
+        (_, error) => {
+          reject(error);
+        }
+      );
+    });
+  }
+  /** */
+
+  /**
+   * Handle
+   */
   const animSetName = useAnimatedStyle(() => ({
     transform: [{ translateY: withSpring(translateY.value) }],
   }));
 
   const changeNameBTN = () => {
-    console.log("ubah");
     translateY.value += -200;
   };
   const saveNameBTN = () => {
-    console.log("save");
     translateY.value += 200;
+    updateUser(name);
   };
+
+  function handleInputName(value) {
+    setName(value);
+  }
 
   return (
     <LinearGradient colors={["#00B4D8", "white"]}>
@@ -80,10 +123,15 @@ export default function Profile() {
             }}
           >
             <Text>Nama :</Text>
-            <Text>User</Text>
+            <Text>{user.name}</Text>
             <BlueButton buttonName="Ubah" onPress={changeNameBTN} />
             <Animated.View style={[styles.boxSetName, animSetName]}>
-              <TabSetName onPress={saveNameBTN} buttonName="Simpan" />
+              <TabSetName
+                onPress={saveNameBTN}
+                buttonName="Simpan"
+                handleInputName={handleInputName}
+                name={name}
+              />
             </Animated.View>
           </View>
         </ScrollView>
