@@ -130,7 +130,6 @@ export default function Profile() {
                 onPress={saveNameBTN}
                 buttonName="Simpan"
                 handleInputName={handleInputName}
-                name={name}
               />
             </Animated.View>
           </View>

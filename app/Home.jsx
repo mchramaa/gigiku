@@ -17,6 +17,9 @@ export default function Home() {
   const ProfileButton = () => {
     navigation.navigate("Profile");
   };
+  const setFirstName = () => {
+    navigation.navigate("SetNewName");
+  };
 
   return (
     <LinearGradient colors={["#1AA7EC", "#90e0ef"]}>
@@ -84,9 +87,15 @@ export default function Home() {
               shadowRadius: 3.84,
               shadowOffset: { height: 4 },
               shadowOpacity: 0.3,
+              gap: 10,
             }}
           >
             <Text>Rama</Text>
+            <TouchableOpacity onPress={setFirstName}>
+              <View
+                style={{ height: 20, width: 20, backgroundColor: "blue" }}
+              ></View>
+            </TouchableOpacity>
           </View>
         </View>
       </View>

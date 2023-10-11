@@ -9,6 +9,8 @@ import Profile from "./app/Profile";
 import * as SQLite from "expo-sqlite";
 import { useAuth } from "./app/hooks/useAuth.zustand";
 import SetAlarm from "./app/SetAlarm";
+import SetNewName from "./app/components/SetFirstName";
+import EditAlarm from "./app/components/EditAlarm";
 
 const Stack = createStackNavigator();
 const App = () => {
@@ -100,6 +102,12 @@ const App = () => {
             />
             <Stack.Screen name="Profile" component={Profile} />
             <Stack.Screen name="SetAlarm" component={SetAlarm} />
+            <Stack.Screen name="EditAlarm" component={EditAlarm} />
+            <Stack.Screen
+              name="SetNewName"
+              component={SetNewName}
+              options={{ headerShown: false }}
+            />
           </Stack.Navigator>
         </NavigationContainer>
       </View>
