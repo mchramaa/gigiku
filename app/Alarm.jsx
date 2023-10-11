@@ -13,21 +13,9 @@ export default function Alarm({ navigation }) {
   const textUp = ["Jangan Lupa !!"];
   const textDown = ["Pasang alarm sikat gigi ya...."];
 
-  // let AlarmData = [
-  //   { id: 1, Tag: "Sikat Gigi Pagi", hours: "04", minute: "30" },
-  //   { id: 2, Tag: "Sikat Gigi Malam", hours: "20", minute: "59" },
-  //   { id: 3, Tag: "Sikat Gigi Pagiawdawd", hours: "20", minute: "59" },
-  //   { id: 4, Tag: "Sikat Gigi Pagi", hours: "20", minute: "59" },
-  //   { id: 1, Tag: "Sikat Gigi Pagi", hours: "04", minute: "30" },
-  //   { id: 2, Tag: "Sikat Gigi Malam", hours: "20", minute: "59" },
-  //   { id: 3, Tag: "Sikat Gigi Pagiawdawd", hours: "20", minute: "59" },
-  //   { id: 4, Tag: "Sikat Gigi Pagi", hours: "20", minute: "59" },
-  //   { id: 1, Tag: "Sikat Gigi Pagi", hours: "04", minute: "30" },
-  //   { id: 2, Tag: "Sikat Gigi Malam", hours: "20", minute: "59" },
-  //   { id: 3, Tag: "Sikat Gigi Pagiawdawd", hours: "20", minute: "59" },
-  //   { id: 4, Tag: "Sikat Gigi Pagi", hours: "20", minute: "59" },
-  // ];
-
+  const SetAlarm = () => {
+    navigation.navigate("SetAlarm");
+  };
   return (
     <LinearGradient colors={["#1AA7EC", "#90e0ef"]}>
       <View style={{ height: "100%" }}>
@@ -140,7 +128,7 @@ export default function Alarm({ navigation }) {
                 ))}
               </ScrollView>
             </View>
-            <TouchableOpacity onPress={() => navigation.navigate("SetAlarm")}>
+            <TouchableOpacity onPress={SetAlarm}>
               <View
                 style={{
                   position: "absolute",

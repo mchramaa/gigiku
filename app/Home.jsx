@@ -7,11 +7,15 @@ import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
 import { useNavigation } from "@react-navigation/native";
 import GigiMaskotSVG from "../assets/icon/GigiMaskotSVG";
 import { useAuth } from "./hooks/useAuth.zustand";
+import CalendarIconSVG from "../assets/icon/CalendarIconSVG";
+import GridBoxRow from "./components/GridBoxRow";
+import GridBoxCol from "./components/GridBoxCol";
+import { Entypo } from "@expo/vector-icons";
 
 export default function Home() {
   const { user } = useAuth();
-  const quoteStart = ["RAWAT GIGIMU SEKARANG"];
-  const quoteEnd = ["DAN NIKMATI SENYUM SEUMUR HIDUPMU"];
+  const quoteStart = ["GEMAS"];
+  const quoteEnd = ["Gigi sehat menuju masa Depan Cerah"];
 
   const navigation = useNavigation();
   const ProfileButton = () => {
@@ -20,6 +24,9 @@ export default function Home() {
   const setFirstName = () => {
     navigation.navigate("SetNewName");
   };
+  const EditAlarm = () => {
+    navigation.navigate("EditAlarm");
+  };
 
   return (
     <LinearGradient colors={["#1AA7EC", "#90e0ef"]}>
@@ -27,77 +34,151 @@ export default function Home() {
         <View
           style={{
             marginTop: Constants.statusBarHeight,
-            paddingHorizontal: 20,
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "center",
+            width: "100%",
+            paddingTop: 10,
+            paddingHorizontal: 15,
+            position: "absolute",
+            zIndex: 10,
           }}
         >
-          <View
+          <Text
             style={{
-              flexDirection: "row",
-              justifyContent: "space-between",
-              alignItems: "center",
-              paddingTop: 10,
+              fontSize: 25,
+              color: "white",
+
+              fontFamily: "Poppins-Bold",
             }}
           >
-            <Text
-              style={{
-                fontSize: 25,
-                color: "white",
-                fontWeight: 700,
-              }}
-            >
-              Hallo {user.name},
-            </Text>
-            <TouchableOpacity onPress={ProfileButton}>
-              <Ionicons
-                name="ios-person-circle-sharp"
-                size={35}
-                style={{ color: "white" }}
-              />
-            </TouchableOpacity>
-          </View>
-          <View
-            style={{
-              justifyContent: "center",
-              alignItems: "center",
-              marginTop: 50,
-            }}
-          >
-            <GigiMaskotSVG />
-          </View>
-          <View style={{}}>
-            <Text
-              style={{
-                textAlign: "center",
-                paddingVertical: 30,
-                fontSize: 20,
-                color: "#03045E",
-                fontWeight: "bold",
-              }}
-            >
-              "{quoteStart},{"\n"}{" "}
-              <Text style={{ color: "white", fontSize: 15 }}>{quoteEnd}"</Text>
-            </Text>
-          </View>
-          <View
-            style={{
-              backgroundColor: "white",
-              height: "38%",
-              borderRadius: 15,
-              elevation: 10,
-              shadowRadius: 3.84,
-              shadowOffset: { height: 4 },
-              shadowOpacity: 0.3,
-              gap: 10,
-            }}
-          >
-            <Text>Rama</Text>
-            <TouchableOpacity onPress={setFirstName}>
-              <View
-                style={{ height: 20, width: 20, backgroundColor: "blue" }}
-              ></View>
-            </TouchableOpacity>
-          </View>
+            Hallo {user.name},
+          </Text>
+          <TouchableOpacity onPress={ProfileButton}>
+            <Ionicons
+              name="ios-person-circle-sharp"
+              size={35}
+              style={{ color: "white" }}
+            />
+          </TouchableOpacity>
         </View>
+        <ScrollView>
+          <View
+            style={{
+              paddingHorizontal: 20,
+              position: "relative",
+              marginBottom: 70,
+            }}
+          >
+            <View
+              style={{
+                justifyContent: "center",
+                alignItems: "center",
+                marginTop: 150,
+              }}
+            >
+              <GigiMaskotSVG />
+            </View>
+            <View style={{}}>
+              <Text
+                style={{
+                  textAlign: "center",
+                  paddingVertical: 30,
+                  fontSize: 30,
+                  color: "#03045E",
+                  fontFamily: "Poppins-Bold",
+                }}
+              >
+                {quoteStart}
+                {"\n"}
+                <Text
+                  style={{
+                    color: "white",
+                    fontSize: 15,
+                    fontFamily: "Poppins-SemiBold",
+                  }}
+                >
+                  "{quoteEnd}"
+                </Text>
+              </Text>
+            </View>
+            <View
+              style={{
+                flexDirection: "row",
+                flexWrap: "wrap",
+                backgroundColor: "white",
+                height: 300,
+                borderRadius: 15,
+                elevation: 10,
+                shadowRadius: 3.84,
+                shadowOffset: { height: 4 },
+                shadowOpacity: 0.3,
+                gap: 20,
+                overflow: "hidden",
+                padding: 15,
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <GridBoxRow
+                width={355}
+                height={100}
+                icon={<CalendarIconSVG />}
+                tittle={"Riwayat Sikat Gigi"}
+                fontStyle={{
+                  fontFamily: "Poppins-Bold",
+                  fontSize: 20,
+                  paddingLeft: 20,
+                  color: "#1AA7EC",
+                }}
+              />
+              <GridBoxCol
+                width={100}
+                height={100}
+                icon={<Entypo name="folder-video" size={50} color="#1AA7EC" />}
+                tittle={"Video1"}
+              />
+              <GridBoxCol
+                width={100}
+                height={100}
+                icon={<Entypo name="folder-video" size={50} color="#1AA7EC" />}
+                tittle={"Video2"}
+              />
+              <GridBoxCol
+                width={100}
+                height={100}
+                icon={<Entypo name="folder-video" size={50} color="#1AA7EC" />}
+                tittle={"Video3"}
+              />
+              <TouchableOpacity onPress={setFirstName}>
+                <View
+                  style={{
+                    height: 50,
+                    width: "100%",
+                    backgroundColor: "",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Text style={{ color: "white" }}>Set First Name</Text>
+                </View>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={EditAlarm}>
+                <View
+                  style={{
+                    height: 50,
+                    width: "100%",
+                    backgroundColor: "",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Text style={{ color: "white" }}>PAGE EDIT ALARM</Text>
+                </View>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </ScrollView>
       </View>
     </LinearGradient>
   );

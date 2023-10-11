@@ -4,9 +4,12 @@ import { LinearGradient } from "expo-linear-gradient";
 import Constants from "expo-constants";
 import TabSetName from "./TabSetName";
 import LotHello from "../../assets/lottie/Hello";
+import { useNavigation } from "@react-navigation/native";
 
 export default function SetFirstName() {
+  const navigation = useNavigation();
   const saveNameBTN = () => {
+    navigation.navigate("Home");
     updateUser(name);
   };
 
@@ -29,18 +32,6 @@ export default function SetFirstName() {
               elevation: 10,
             }}
           >
-            <Text
-              style={{
-                textAlign: "center",
-                marginTop: 40,
-                fontSize: 30,
-                color: "white",
-                fontWeight: "bold",
-                elevation: 1,
-              }}
-            >
-              Selamat Datang
-            </Text>
             <LotHello />
             <View
               style={{

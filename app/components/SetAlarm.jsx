@@ -13,7 +13,7 @@ import DateTimePicker from "@react-native-community/datetimepicker";
 import { LinearGradient } from "expo-linear-gradient";
 import BlueButton from "./BlueButton";
 
-const EditAlarm = ({ navigation }) => {
+const SetAlarm = ({ navigation }) => {
   const { handleSelectedTime, handleInputTag, handleButtonSubmitAlarm } =
     useAlarm(navigation);
 
@@ -202,4 +202,4 @@ const EditAlarm = ({ navigation }) => {
   );
 };
 
-export default EditAlarm;
+export default SetAlarm;
