@@ -1,4 +1,4 @@
-import { Text } from "react-native";
+import { Image, Text } from "react-native";
 import { View } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import Constants from "expo-constants";
@@ -11,6 +11,7 @@ import CalendarIconSVG from "../assets/icon/CalendarIconSVG";
 import GridBoxRow from "./components/GridBoxRow";
 import GridBoxCol from "./components/GridBoxCol";
 import { Entypo } from "@expo/vector-icons";
+import MaskotHome from "../assets/lottie/MaskotHome";
 
 export default function Home() {
   const { user } = useAuth();
@@ -74,10 +75,18 @@ export default function Home() {
               style={{
                 justifyContent: "center",
                 alignItems: "center",
-                marginTop: 150,
+                marginTop: 100,
               }}
             >
-              <GigiMaskotSVG />
+              {/* <MaskotHome /> */}
+              <Image
+                source={require("../assets/lottie/TeethHello.gif")}
+                style={{
+                  height: 300,
+                  width: 300,
+                  marginLeft: 20,
+                }}
+              />
             </View>
             <View style={{}}>
               <Text
@@ -107,7 +116,6 @@ export default function Home() {
                 flexDirection: "row",
                 flexWrap: "wrap",
                 backgroundColor: "white",
-                height: 300,
                 borderRadius: 15,
                 elevation: 10,
                 shadowRadius: 3.84,
@@ -150,34 +158,33 @@ export default function Home() {
                 icon={<Entypo name="folder-video" size={50} color="#1AA7EC" />}
                 tittle={"Video3"}
               />
-              
             </View>
             <TouchableOpacity onPress={setFirstName}>
-                <View
-                  style={{
-                    height: 50,
-                    width: "100%",
-                    backgroundColor: "blue",
-                    justifyContent: "center",
-                    alignItems: "center",
-                  }}
-                >
-                  <Text style={{ color: "white" }}>Set First Name</Text>
-                </View>
-              </TouchableOpacity>
-              <TouchableOpacity onPress={EditAlarm}>
-                <View
-                  style={{
-                    height: 50,
-                    width: "100%",
-                    backgroundColor: "blue",
-                    justifyContent: "center",
-                    alignItems: "center",
-                  }}
-                >
-                  <Text style={{ color: "white" }}>PAGE EDIT ALARM</Text>
-                </View>
-              </TouchableOpacity>
+              <View
+                style={{
+                  height: 50,
+                  width: "100%",
+                  backgroundColor: "blue",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <Text style={{ color: "white" }}>Set First Name</Text>
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={EditAlarm}>
+              <View
+                style={{
+                  height: 50,
+                  width: "100%",
+                  backgroundColor: "blue",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <Text style={{ color: "white" }}>PAGE EDIT ALARM</Text>
+              </View>
+            </TouchableOpacity>
           </View>
         </ScrollView>
       </View>

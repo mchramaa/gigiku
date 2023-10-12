@@ -5,6 +5,7 @@ import Constants from "expo-constants";
 import TabSetName from "./TabSetName";
 import LotHello from "../../assets/lottie/Hello";
 import { useNavigation } from "@react-navigation/native";
+import MaskotHello from "../../assets/lottie/MaskotHello";
 
 export default function SetFirstName() {
   const navigation = useNavigation();
@@ -27,12 +28,13 @@ export default function SetFirstName() {
         >
           <View
             style={{
-              justifyContent: "center",
+              // justifyContent: "center",
               alignItems: "center",
               elevation: 10,
             }}
           >
             <LotHello />
+            <MaskotHello />
             <View
               style={{
                 height: 200,
@@ -41,7 +43,6 @@ export default function SetFirstName() {
                 borderRadius: 15,
                 padding: 30,
                 justifyContent: "center",
-                marginTop: 30,
               }}
             >
               <Text

@@ -19,6 +19,8 @@ export default function GridBoxRow({
         height: height,
         backgroundColor: "white",
         elevation: 3,
+        shadowOpacity: 0.2,
+        shadowOffset: { height: 1 },
         borderRadius: 10,
         justifyContent: "center",
         alignItems: "center",

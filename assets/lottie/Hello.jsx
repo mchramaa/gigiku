@@ -9,7 +9,7 @@ export default function LotHello() {
         source={require("../../assets/lottie/hello.json")}
         autoPlay
         loop
-        style={{ width: 200, height: 200 }}
+        style={{ width: 200, height: 200, marginBottom: -90 }}
       />
     </View>
   );
