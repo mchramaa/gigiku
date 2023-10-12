@@ -2,15 +2,14 @@ import { View, Text } from "react-native";
 import React from "react";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
-export default function BlueButton(props) {
-  let { onPress, buttonName } = props;
+export default function BlueButton({ onPress, tittle, width, height }) {
   return (
     <TouchableOpacity onPress={onPress}>
       <View
         style={{
           marginTop: 15,
-          width: 120,
-          height: 45,
+          width: width,
+          height: height,
           backgroundColor: "#00B4D8",
           alignItems: "center",
           justifyContent: "center",
@@ -19,7 +18,7 @@ export default function BlueButton(props) {
         }}
       >
         <Text style={{ fontWeight: "bold", fontSize: 20, color: "white" }}>
-          {buttonName}
+          {tittle}
         </Text>
       </View>
     </TouchableOpacity>

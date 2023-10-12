@@ -8,10 +8,7 @@ import { useFonts } from "expo-font";
 import * as SQLite from "expo-sqlite";
 import Tabs from "./app/Tabs";
 import Profile from "./app/Profile";
-import SetAlarm from "./app/components/SetAlarm";
 import SetNewName from "./app/components/SetFirstName";
-import EditAlarm from "./app/components/EditAlarm";
-import SetRepeat from "./app/components/SetRepeat";
 
 const Stack = createStackNavigator();
 const App = () => {
@@ -114,25 +111,11 @@ const App = () => {
               options={{ headerShown: false, title: "Home" }}
             />
             <Stack.Screen name="Profile" component={Profile} />
-            <Stack.Screen
-              name="SetAlarm"
-              component={SetAlarm}
-              options={{ title: "Tambah Alarm" }}
-            />
-            <Stack.Screen
-              name="EditAlarm"
-              component={EditAlarm}
-              options={{ title: "Edit Alarm" }}
-            />
+
             <Stack.Screen
               name="SetNewName"
               component={SetNewName}
               options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="SetRepeat"
-              component={SetRepeat}
-              options={{ title: "Pengulangan" }}
             />
           </Stack.Navigator>
         </NavigationContainer>

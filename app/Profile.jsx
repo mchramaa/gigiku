@@ -122,9 +122,24 @@ export default function Profile() {
               overflow: "hidden",
             }}
           >
-            <Text>Nama :</Text>
-            <Text>{user.name}</Text>
-            <BlueButton buttonName="Ubah" onPress={changeNameBTN} />
+            <Text
+              style={{
+                fontFamily: "Poppins-SemiBold",
+                fontSize: 20,
+                color: "#00B4D8",
+              }}
+            >
+              Nama :
+            </Text>
+            <Text style={{ fontFamily: "Poppins-SemiBold", fontSize: 25 }}>
+              {user.name} RAMA Dhani
+            </Text>
+            <BlueButton
+              tittle="Ubah"
+              onPress={changeNameBTN}
+              width={100}
+              height={45}
+            />
             <Animated.View style={[styles.boxSetName, animSetName]}>
               <TabSetName
                 onPress={saveNameBTN}

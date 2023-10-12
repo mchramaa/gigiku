@@ -5,11 +5,10 @@ import Constants from "expo-constants";
 import { Ionicons } from "@expo/vector-icons";
 import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
 import { useNavigation } from "@react-navigation/native";
-import GigiMaskotSVG from "../assets/icon/GigiMaskotSVG";
 import { useAuth } from "./hooks/useAuth.zustand";
+import Box from "./components/Box";
 import CalendarIconSVG from "../assets/icon/CalendarIconSVG";
-import GridBoxRow from "./components/GridBoxRow";
-import GridBoxCol from "./components/GridBoxCol";
+
 import { Entypo } from "@expo/vector-icons";
 import MaskotHome from "../assets/lottie/MaskotHome";
 
@@ -75,16 +74,15 @@ export default function Home() {
               style={{
                 justifyContent: "center",
                 alignItems: "center",
-                marginTop: 100,
+                marginTop: 150,
               }}
             >
-              {/* <MaskotHome /> */}
-              <Image
-                source={require("../assets/lottie/TeethHello.gif")}
+              <MaskotHome
                 style={{
-                  height: 300,
                   width: 300,
-                  marginLeft: 20,
+                  height: 300,
+                  marginTop: -15,
+                  marginBottom: -50,
                 }}
               />
             </View>
@@ -111,6 +109,22 @@ export default function Home() {
                 </Text>
               </Text>
             </View>
+
+            <Box
+              button={true}
+              width={390}
+              height={100}
+              icon={<CalendarIconSVG />}
+              tittle={"Riwayat Sikat Gigi"}
+              fontStyle={{
+                fontFamily: "Poppins-Bold",
+                fontSize: 23,
+                paddingLeft: 20,
+                color: "#1AA7EC",
+              }}
+              iconStyle={{ width: 100, height: 100 }}
+            />
+
             <View
               style={{
                 flexDirection: "row",
@@ -123,15 +137,20 @@ export default function Home() {
                 shadowOpacity: 0.3,
                 gap: 20,
                 overflow: "hidden",
+                marginTop: 50,
                 padding: 15,
                 alignItems: "center",
                 justifyContent: "center",
               }}
             >
-              <GridBoxRow
+              <Text style={{ fontFamily: "Poppins-Bold", fontSize: 30 }}>
+                VIDEO EDUKASI
+              </Text>
+              <Box
+                button={true}
                 width={355}
-                height={100}
-                icon={<CalendarIconSVG />}
+                height={60}
+                icon={<Entypo name="folder-video" size={40} color="#1AA7EC" />}
                 tittle={"Riwayat Sikat Gigi"}
                 fontStyle={{
                   fontFamily: "Poppins-Bold",
@@ -140,51 +159,46 @@ export default function Home() {
                   color: "#1AA7EC",
                 }}
               />
-              <GridBoxCol
-                width={100}
-                height={100}
-                icon={<Entypo name="folder-video" size={50} color="#1AA7EC" />}
-                tittle={"Video1"}
+              <Box
+                button={true}
+                width={355}
+                height={60}
+                icon={<Entypo name="folder-video" size={40} color="#1AA7EC" />}
+                tittle={"Riwayat Sikat Gigi"}
+                fontStyle={{
+                  fontFamily: "Poppins-Bold",
+                  fontSize: 20,
+                  paddingLeft: 20,
+                  color: "#1AA7EC",
+                }}
               />
-              <GridBoxCol
-                width={100}
-                height={100}
-                icon={<Entypo name="folder-video" size={50} color="#1AA7EC" />}
-                tittle={"Video2"}
+              <Box
+                button={true}
+                width={355}
+                height={60}
+                icon={<Entypo name="folder-video" size={40} color="#1AA7EC" />}
+                tittle={"Riwayat Sikat Gigi"}
+                fontStyle={{
+                  fontFamily: "Poppins-Bold",
+                  fontSize: 20,
+                  paddingLeft: 20,
+                  color: "#1AA7EC",
+                }}
               />
-              <GridBoxCol
-                width={100}
-                height={100}
-                icon={<Entypo name="folder-video" size={50} color="#1AA7EC" />}
-                tittle={"Video3"}
+              <Box
+                button={true}
+                width={355}
+                height={60}
+                icon={<Entypo name="folder-video" size={40} color="#1AA7EC" />}
+                tittle={"Riwayat Sikat Gigi"}
+                fontStyle={{
+                  fontFamily: "Poppins-Bold",
+                  fontSize: 20,
+                  paddingLeft: 20,
+                  color: "#1AA7EC",
+                }}
               />
             </View>
-            <TouchableOpacity onPress={setFirstName}>
-              <View
-                style={{
-                  height: 50,
-                  width: "100%",
-                  backgroundColor: "blue",
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-              >
-                <Text style={{ color: "white" }}>Set First Name</Text>
-              </View>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={EditAlarm}>
-              <View
-                style={{
-                  height: 50,
-                  width: "100%",
-                  backgroundColor: "blue",
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-              >
-                <Text style={{ color: "white" }}>PAGE EDIT ALARM</Text>
-              </View>
-            </TouchableOpacity>
           </View>
         </ScrollView>
       </View>
