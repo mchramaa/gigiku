@@ -150,12 +150,14 @@ export default function Home() {
                 icon={<Entypo name="folder-video" size={50} color="#1AA7EC" />}
                 tittle={"Video3"}
               />
-              <TouchableOpacity onPress={setFirstName}>
+              
+            </View>
+            <TouchableOpacity onPress={setFirstName}>
                 <View
                   style={{
                     height: 50,
                     width: "100%",
-                    backgroundColor: "",
+                    backgroundColor: "blue",
                     justifyContent: "center",
                     alignItems: "center",
                   }}
@@ -168,7 +170,7 @@ export default function Home() {
                   style={{
                     height: 50,
                     width: "100%",
-                    backgroundColor: "",
+                    backgroundColor: "blue",
                     justifyContent: "center",
                     alignItems: "center",
                   }}
@@ -176,7 +178,6 @@ export default function Home() {
                   <Text style={{ color: "white" }}>PAGE EDIT ALARM</Text>
                 </View>
               </TouchableOpacity>
-            </View>
           </View>
         </ScrollView>
       </View>
