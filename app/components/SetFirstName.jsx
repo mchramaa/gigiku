@@ -4,15 +4,46 @@ import { LinearGradient } from "expo-linear-gradient";
 import Constants from "expo-constants";
 import TabSetName from "./TabSetName";
 import LotHello from "../../assets/lottie/Hello";
-import { useNavigation } from "@react-navigation/native";
 import MaskotHello from "../../assets/lottie/MaskotHello";
+import { useState } from "react";
+import * as SQLite from "expo-sqlite";
+import { useAuth } from "../hooks/useAuth.zustand";
 
-export default function SetFirstName() {
-  const navigation = useNavigation();
-  const saveNameBTN = () => {
-    navigation.navigate("Home");
-    updateUser(name);
-  };
+export default function SetFirstName({ navigation }) {
+  const db = SQLite.openDatabase("gigiku.db");
+
+  const { setUser } = useAuth();
+  const [name, setName] = useState("");
+
+  function createUser() {
+    return new Promise((resolve, reject) => {
+      db.transaction((tx) => {
+        tx.executeSql(
+          `INSERT INTO users (name) values (?)`,
+          [name],
+          (_, { insertId, rowsAffected }) => {
+            resolve({ insertId: insertId, rowsAffected: rowsAffected });
+          },
+          (error) => {
+            reject(error);
+          }
+        );
+      });
+    });
+  }
+
+  function saveNameBTN() {
+    createUser()
+      .then((res) => {
+        if (res.rowsAffected === 1) {
+          setUser({ id: res.insertId, name: name });
+          navigation.navigate("Tabs");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 
   function handleInputName(value) {
     setName(value);

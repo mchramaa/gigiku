@@ -8,7 +8,7 @@ const useAlarm = (navigation) => {
   /**
    * State
    */
-  const [AlarmData, setAlarmData] = useState([]);
+  const [alarmData, setAlarmData] = useState([]);
   const [alarmTag, setAlarmTag] = useState("");
   const [alarmTime, setAlarmTime] = useState("");
   /** */
@@ -83,7 +83,7 @@ const useAlarm = (navigation) => {
     }, [])
   );
   return {
-    AlarmData,
+    alarmData,
     handleSelectedTime,
     handleInputTag,
     handleButtonSubmitAlarm,

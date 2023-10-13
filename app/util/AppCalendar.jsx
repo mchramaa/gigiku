@@ -1,42 +1,76 @@
 import { View, Text } from "react-native";
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { Calendar, LocaleConfig } from "react-native-calendars";
 import CalendarIconSVG from "../../assets/icon/CalendarIconSVG";
+import * as SQLite from "expo-sqlite";
+import {
+  dayNames,
+  dayNamesShort,
+  monthNames,
+  today,
+} from "../constants/calender-config";
+import { useFocusEffect } from "@react-navigation/native";
 
 LocaleConfig.locales["fr"] = {
-  monthNames: [
-    "Januari",
-    "Februari",
-    "Maret",
-    "April",
-    "Mei",
-    "Juni",
-    "Juli",
-    "Agustus",
-    "September",
-    "Oktober",
-    "November",
-    "Desember",
-  ],
-  dayNames: ["Senin", "Selasa", "Rabu", "Kamis", "Jum'at", "Sabtu", "Minggu"],
-  dayNamesShort: ["Sen", "Sel", "Rab", "Kam", "Jum", "Sab", "Ming"],
-  today: "Hari ini",
+  monthNames: monthNames,
+  dayNames: dayNames,
+  dayNamesShort: dayNamesShort,
+  today: today,
 };
 
 LocaleConfig.defaultLocale = "fr";
 
 export default function AppCalendar() {
-  let dataSikatGigi = [{ date: "2023-10-10", status: 0 }];
-  let riwayatSikatGigi = {
-    "2023-10-10": {
-      marked: true,
-      dotColor: "pink",
-    },
-    "2023-10-11": {
-      marked: true,
-      dotColor: "#1AA7EC",
-    },
-  };
+  const db = SQLite.openDatabase("gigiku.db");
+
+  const [dataSikatGigi, setdataSikatGigi] = useState([]);
+
+  function getReports() {
+    return new Promise((resolve, reject) => {
+      db.transaction((tx) => {
+        tx.executeSql(
+          "SELECT created_at AS date, COUNT(*) as status FROM reports GROUP BY created_at",
+          [],
+          (tx, { rows }) => {
+            const reportRows = rows._array;
+            resolve(reportRows);
+          },
+          (tx, error) => {
+            reject(error);
+          }
+        );
+      });
+    });
+  }
+
+  useFocusEffect(
+    useCallback(() => {
+      getReports()
+        .then((res) => setdataSikatGigi(res))
+        .catch((err) => console.log(err));
+    }, [])
+  );
+
+  const riwayatSikatGigiArray = [];
+
+  dataSikatGigi.forEach((data) => {
+    riwayatSikatGigiArray.push(
+      Object.assign({
+        [data.date]: {
+          marked: data.status === 0 ? false : true,
+          dotColor: `${data.status === 1 ? "pink" : "#1AA7EC"}`,
+        },
+      })
+    );
+  });
+  const riwayatSikatGigi = {};
+  riwayatSikatGigiArray.forEach((item) => {
+    for (const date in item) {
+      if (item.hasOwnProperty(date)) {
+        riwayatSikatGigi[date] = item[date];
+      }
+    }
+  });
 
   const DotStyle = {
     width: 30,

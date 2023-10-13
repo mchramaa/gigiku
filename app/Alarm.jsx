@@ -9,7 +9,7 @@ import { ScrollView } from "react-native-gesture-handler";
 import CalendarIconSVG from "../assets/icon/CalendarIconSVG";
 
 export default function Alarm({ navigation }) {
-  const { AlarmData } = useAlarm();
+  const { alarmData } = useAlarm();
   const textUp = ["Jangan Lupa !!"];
   const textDown = ["Pasang alarm sikat gigi ya...."];
 
@@ -55,8 +55,11 @@ export default function Alarm({ navigation }) {
         </View>
 
         <View style={{ marginBottom: 200 }}>
-          <AlarmBox tittle={"Sikat Gigi Pagi"} />
-          <AlarmBox tittle={"Sikat Gigi Malam"} />
+          {alarmData.map((data, key) => (
+            <AlarmBox tittle={data.tag} key={key} alarmData={data} />
+          ))}
+          {/* <AlarmBox tittle={"Sikat Gigi Pagi"} />
+          <AlarmBox tittle={"Sikat Gigi Malam"} /> */}
 
           <AppCalendar />
         </View>

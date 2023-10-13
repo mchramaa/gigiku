@@ -2,14 +2,34 @@ import { View, Text } from "react-native";
 import React, { useState } from "react";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import * as SQLite from "expo-sqlite";
 
-export default function AlarmBox({ tittle }) {
-  const [date, setDate] = useState(new Date(1598051730000));
+export default function AlarmBox({ tittle, alarmData }) {
+  const db = SQLite.openDatabase("gigiku.db");
+
+  const [date, setDate] = useState(new Date(setDefaultAlarm()));
   const [mode, setMode] = useState("date");
   const [show, setShow] = useState(false);
 
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate;
+    const timeToStore = new Intl.DateTimeFormat("id-ID", {
+      hour12: false,
+      hour: "2-digit",
+      minute: "2-digit",
+    })
+      .format(currentDate)
+      .split(".");
+
+    editAlarm(
+      Object.assign({
+        id: alarmData.id,
+        tag: alarmData.tag,
+        hours: timeToStore[0],
+        minute: timeToStore[1],
+      })
+    );
+
     setShow(false);
     setDate(currentDate);
   };
@@ -22,6 +42,40 @@ export default function AlarmBox({ tittle }) {
   const showTimepicker = () => {
     showMode("time");
   };
+
+  function setDefaultAlarm() {
+    const now = new Date();
+
+    const dateWithTime = new Date(
+      now.getFullYear(),
+      now.getMonth(),
+      now.getDate(),
+      alarmData.hours,
+      alarmData.minute
+    );
+
+    return dateWithTime;
+  }
+
+  function editAlarm(payload) {
+    db.transaction((tx) => {
+      tx.executeSql(
+        "UPDATE alarms SET tag = ?, hours = ?, minute = ? WHERE id = ?",
+        [payload.tag, payload.hours, payload.minute, payload.id],
+        (_, { rowsAffected }) => {
+          if (rowsAffected > 0) {
+            console.log("update success");
+          } else {
+            reject(new Error("User not found"));
+          }
+        },
+        (_, error) => {
+          reject(error);
+        }
+      );
+    });
+  }
+
   return (
     <View
       style={{

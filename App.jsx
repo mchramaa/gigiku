@@ -1,5 +1,5 @@
-import { View, StyleSheet } from "react-native";
-import React, { useEffect } from "react";
+import { View, StyleSheet, Text } from "react-native";
+import React, { useEffect, useMemo, useState } from "react";
 import { StatusBar } from "expo-status-bar";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
@@ -12,7 +12,9 @@ import SetNewName from "./app/components/SetFirstName";
 
 const Stack = createStackNavigator();
 const App = () => {
-  const { setUser } = useAuth();
+  const { user, setUser } = useAuth();
+  const [isUserSet, setIsUserSet] = useState(false);
+  const [isAlarmTable, setIsAlarmTable] = useState(false);
   const [fontsLoaded] = useFonts({
     "Poppins-Bold": require("./assets/fonts/Poppins-Bold.ttf"),
     "Poppins-ExtraBold": require("./assets/fonts/Poppins-ExtraBold.ttf"),
@@ -37,13 +39,69 @@ const App = () => {
       tx.executeSql(
         "CREATE TABLE IF NOT EXISTS alarms (id INTEGER PRIMARY KEY AUTOINCREMENT, tag VARCHAR(255) NOT NULL, hours VARCHAR(255) NOT NULL, minute VARCHAR(255) NOT NULL);",
         [],
-        () => console.log("Alarms Table created successfully"),
+        () => setIsAlarmTable(true),
         (error) => {
           if (error) {
             console.error("Error creating table: ", error);
           }
         }
       );
+
+      tx.executeSql(
+        "CREATE TABLE IF NOT EXISTS reports (id INTEGER PRIMARY KEY AUTOINCREMENT, created_at VARCHAR(255) NOT NULL);",
+        [],
+        () => console.log("Reports Table created successfully"),
+        (error) => {
+          if (error) {
+            console.error("Error creating table: ", error);
+          }
+        }
+      );
+    });
+  }
+
+  function getDefaultAlarm() {
+    return new Promise((resolve, reject) => {
+      db.transaction((tx) => {
+        tx.executeSql(
+          "SELECT * FROM alarms",
+          [],
+          (_, { rows }) => {
+            const alarmRows = rows._array;
+            resolve(alarmRows);
+          },
+          (error) => {
+            reject(error);
+          }
+        );
+      });
+    });
+  }
+
+  function createDefaultAlarm() {
+    return new Promise((resolve, reject) => {
+      db.transaction((tx) => {
+        tx.executeSql(
+          `INSERT INTO alarms (tag, hours, minute) values (?, ?, ?)`,
+          ["Sikat Gigi Pagi", "06", "01"],
+          (_, { insertId, rowsAffected }) => {
+            resolve({ insertId: insertId, rowsAffected: rowsAffected });
+          },
+          (error) => {
+            reject(error);
+          }
+        );
+        tx.executeSql(
+          `INSERT INTO alarms (tag, hours, minute) values (?, ?, ?)`,
+          ["Sikat Gigi Malam", "18", "01"],
+          (_, { insertId, rowsAffected }) => {
+            resolve({ insertId: insertId, rowsAffected: rowsAffected });
+          },
+          (error) => {
+            reject(error);
+          }
+        );
+      });
     });
   }
 
@@ -77,16 +135,44 @@ const App = () => {
           console.error("Error while emptying the table:", error);
         }
       );
+      tx.executeSql(
+        "DELETE FROM users",
+        [],
+        (_, result) => {
+          console.log("Table emptied successfully");
+        },
+        (error) => {
+          console.error("Error while emptying the table:", error);
+        }
+      );
+      tx.executeSql(
+        "DELETE FROM reports",
+        [],
+        (_, result) => {
+          console.log("Table emptied successfully");
+        },
+        (error) => {
+          console.error("Error while emptying the table:", error);
+        }
+      );
     });
   };
 
+  async function initAlarmDefault() {
+    const defaultAlarm = await getDefaultAlarm();
+    if (defaultAlarm.length == 0) {
+      createDefaultAlarm();
+    }
+  }
+
   useEffect(() => {
-    emptyTable();
     getUserData()
       .then((userRows) => {
         if (userRows.length > 0) {
           setUser({ id: userRows[0].id, name: userRows[0].name });
+          setIsUserSet(true);
         }
+        setIsUserSet(true);
       })
       .catch((error) => {
         console.error(error);
@@ -95,8 +181,20 @@ const App = () => {
     initDatabase();
   }, []);
 
+  if (isAlarmTable) {
+    initAlarmDefault();
+  }
+
   if (!fontsLoaded) {
     return null;
+  }
+
+  if (!isUserSet) {
+    return (
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        <Text>Loading . . .</Text>
+      </View>
+    );
   }
 
   return (
@@ -104,7 +202,9 @@ const App = () => {
       <StatusBar style={"dark"} />
       <View style={{ flex: 1 }}>
         <NavigationContainer style={styles.NavCon}>
-          <Stack.Navigator>
+          <Stack.Navigator
+            initialRouteName={`${user.name != "" ? "Tabs" : "SetNewName"}`}
+          >
             <Stack.Screen
               name="Tabs"
               component={Tabs}
