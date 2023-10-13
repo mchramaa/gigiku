@@ -132,7 +132,7 @@ export default function Profile() {
               Nama :
             </Text>
             <Text style={{ fontFamily: "Poppins-SemiBold", fontSize: 25 }}>
-              {user.name} RAMA Dhani
+              {user.name}
             </Text>
             <BlueButton
               tittle="Ubah"
