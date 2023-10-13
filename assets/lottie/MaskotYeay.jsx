@@ -2,11 +2,11 @@ import { View } from "react-native";
 import React from "react";
 import AnimatedLottieView from "lottie-react-native";
 
-export default function MaskotHome({ style }) {
+export default function MaskotYeay({ style }) {
   return (
     <View>
       <AnimatedLottieView
-        source={require("./Maskot.json")}
+        source={require("./MaskotYeay.json")}
         autoPlay
         loop
         style={{ ...style }}

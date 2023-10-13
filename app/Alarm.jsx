@@ -7,6 +7,7 @@ import AlarmBox from "./components/AlarmBox";
 import AppCalendar from "./util/AppCalendar";
 import { ScrollView } from "react-native-gesture-handler";
 import CalendarIconSVG from "../assets/icon/CalendarIconSVG";
+import MaskotYeay from "../assets/lottie/MaskotYeay";
 
 export default function Alarm({ navigation }) {
   const { alarmData } = useAlarm();
@@ -34,7 +35,7 @@ export default function Alarm({ navigation }) {
             marginHorizontal: 20,
           }}
         >
-          <MaskotHome
+          <MaskotYeay
             style={{
               height: 140,
               marginTop: -10,
