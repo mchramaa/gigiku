@@ -1,4 +1,4 @@
-import { View, Text } from "react-native";
+import { View, Text, Linking } from "react-native";
 import React, { useCallback, useState } from "react";
 import { Calendar, LocaleConfig } from "react-native-calendars";
 import CalendarIconSVG from "../../assets/icon/CalendarIconSVG";
@@ -10,6 +10,7 @@ import {
   today,
 } from "../constants/calender-config";
 import { useFocusEffect } from "@react-navigation/native";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 LocaleConfig.locales["fr"] = {
   monthNames: monthNames,
@@ -72,6 +73,15 @@ export default function AppCalendar() {
     }
   });
 
+  //Disabel Claim Certificate
+  let certiBtnDisable = false;
+  //link Claim Certi
+  function linkCertiBtn() {
+    const url = "https://forms.gle/9mJFJ88GjN6CJvde6";
+    Linking.openURL(url);
+    console.log("Claim");
+  }
+
   const DotStyle = {
     width: 30,
     height: 30,
@@ -79,6 +89,8 @@ export default function AppCalendar() {
     borderRadius: 15,
     zIndex: -10,
   };
+
+  const textDayStyle = { color: "red" };
 
   return (
     <View
@@ -111,7 +123,93 @@ export default function AppCalendar() {
           Riwayat Sikat Gigi
         </Text>
       </View>
-      <Calendar markedDates={riwayatSikatGigi} theme={{ dotStyle: DotStyle }} />
+      <Calendar
+        markedDates={riwayatSikatGigi}
+        theme={{
+          dotStyle: DotStyle,
+          todayTextColor: "black",
+          todayBackgroundColor: "#e3f5fc",
+        }}
+        style={{ borderBottomWidth: 0.7, borderBottomColor: "#d9d9d9" }}
+      />
+
+      {/* Keterangan */}
+      <View
+        style={{
+          width: "100%",
+          flexDirection: "row",
+          justifyContent: "space-around",
+          marginTop: 7,
+        }}
+      >
+        <View
+          style={{
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: 10,
+          }}
+        >
+          <View
+            style={{
+              height: 14,
+              width: 14,
+              backgroundColor: "pink",
+              borderRadius: 7,
+            }}
+          ></View>
+          <Text>Sikat Gigi sekali</Text>
+        </View>
+        <View
+          style={{
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: 10,
+          }}
+        >
+          <View
+            style={{
+              height: 14,
+              width: 14,
+              backgroundColor: "#1AA7EC",
+              borderRadius: 7,
+            }}
+          ></View>
+          <Text>Sikat Gigi dua kali</Text>
+        </View>
+      </View>
+
+      <View style={{ marginTop: 30 }}>
+        <TouchableOpacity
+          disabled={certiBtnDisable}
+          onPress={linkCertiBtn}
+          style={{
+            backgroundColor: `${
+              certiBtnDisable === true ? "#dcddde" : "#1AA7EC"
+            }`,
+            paddingVertical: 4,
+            borderRadius: 100,
+            alignItems: "center",
+          }}
+        >
+          <Text
+            style={{
+              textAlign: "center",
+              fontFamily: "Poppins-Bold",
+              fontSize: 25,
+              color: "white",
+            }}
+          >
+            Klaim Sertifikat
+          </Text>
+        </TouchableOpacity>
+        <Text style={{ fontSize: 10.5, textAlign: "center", marginTop: 1 }}>
+          <Text style={{ color: "red" }}>*</Text>
+          Sikat Gigi sehari 2x selama 14 hari berturut-turut untuk klaim
+          sertifikat
+        </Text>
+      </View>
     </View>
   );
 }

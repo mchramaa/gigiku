@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { ImageBackground, StyleSheet, Text, View } from "react-native";
+import React, { useState } from "react";
+import { StyleSheet, Text, View } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { ScrollView } from "react-native-gesture-handler";
 import Animated, {
@@ -13,6 +13,7 @@ import BlueButton from "./components/BlueButton";
 import TabSetName from "./components/TabSetName";
 import * as SQLite from "expo-sqlite";
 import { useAuth } from "./hooks/useAuth.zustand";
+import MaskotHello from "../assets/lottie/MaskotHello";
 
 export default function Profile() {
   /**
@@ -84,29 +85,7 @@ export default function Profile() {
             paddingHorizontal: 30,
           }}
         >
-          <Animated.View
-            entering={FadeInUp}
-            style={{
-              height: 250,
-              width: 250,
-              borderRadius: 125,
-              overflow: "hidden",
-              borderWidth: 20,
-              justifyContent: "center",
-              alignItems: "center",
-              borderColor: "white",
-              elevation: 8,
-            }}
-          >
-            <ImageBackground
-              source={avatar}
-              style={{
-                height: 250,
-                width: 250,
-                resizeMode: "cover",
-              }}
-            ></ImageBackground>
-          </Animated.View>
+          <MaskotHello />
           <View
             style={{
               width: "100%",

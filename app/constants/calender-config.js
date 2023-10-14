@@ -13,13 +13,13 @@ export const monthNames = [
   "Desember",
 ];
 export const dayNames = [
+  "Minggu",
   "Senin",
   "Selasa",
   "Rabu",
   "Kamis",
   "Jum'at",
   "Sabtu",
-  "Minggu",
 ];
-export const dayNamesShort = ["Sen", "Sel", "Rab", "Kam", "Jum", "Sab", "Ming"];
+export const dayNamesShort = ["Ming", "Sen", "Sel", "Rab", "Kam", "Jum", "Sab"];
 export const today = "Hari ini";
