@@ -90,8 +90,6 @@ export default function AppCalendar() {
     zIndex: -10,
   };
 
-  const textDayStyle = { color: "red" };
-
   return (
     <View
       style={{
