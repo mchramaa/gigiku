@@ -189,13 +189,13 @@ const App = () => {
     return null;
   }
 
-  if (!isUserSet) {
-    return (
-      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        <Text>Loading . . .</Text>
-      </View>
-    );
-  }
+  // if (!isUserSet) {
+  //   return (
+  //     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+  //       <Text>Loading . . .</Text>
+  //     </View>
+  //   );
+  // }
 
   return (
     <View style={styles.container}>

@@ -2,11 +2,9 @@ import { View, Text } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import Constants from "expo-constants";
 import useAlarm from "./hooks/useAlarm";
-import MaskotHome from "../assets/lottie/MaskotHome";
 import AlarmBox from "./components/AlarmBox";
 import AppCalendar from "./util/AppCalendar";
 import { ScrollView } from "react-native-gesture-handler";
-import CalendarIconSVG from "../assets/icon/CalendarIconSVG";
 import MaskotYeay from "../assets/lottie/MaskotYeay";
 
 export default function Alarm({ navigation }) {
@@ -59,8 +57,6 @@ export default function Alarm({ navigation }) {
           {alarmData.map((data, key) => (
             <AlarmBox tittle={data.tag} key={key} alarmData={data} />
           ))}
-          {/* <AlarmBox tittle={"Sikat Gigi Pagi"} />
-          <AlarmBox tittle={"Sikat Gigi Malam"} /> */}
 
           <AppCalendar />
         </View>

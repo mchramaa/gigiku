@@ -11,11 +11,12 @@ import CalendarIconSVG from "../assets/icon/CalendarIconSVG";
 
 import { Entypo } from "@expo/vector-icons";
 import MaskotHome from "../assets/lottie/MaskotHome";
+import VideoICN from "../assets/lottie/VideoICN";
 
 export default function Home() {
   const { user } = useAuth();
   const quoteStart = ["GEMAS"];
-  const quoteEnd = ["Gigi sehat menuju masa Depan Cerah"];
+  const quoteEnd = ["Gigi Sehat Menuju Masa Depan Cerah"];
 
   const navigation = useNavigation();
   const ProfileButton = () => {
@@ -163,7 +164,7 @@ export default function Home() {
                 button={true}
                 width={355}
                 height={60}
-                icon={<Entypo name="folder-video" size={40} color="#1AA7EC" />}
+                icon={<VideoICN style={{ width: 50, heigh: 50 }} />}
                 tittle={"Riwayat Sikat Gigi"}
                 fontStyle={{
                   fontFamily: "Poppins-Bold",
