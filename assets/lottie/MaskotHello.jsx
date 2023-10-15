@@ -6,7 +6,7 @@ export default function MaskotHello() {
   return (
     <View>
       <AnimatedLottieView
-        source={require("../../assets/lottie/TeethHello.json")}
+        source={require("../../assets/lottie/MaskotHello.json")}
         autoPlay
         loop
         style={{ width: 200, height: 200 }}

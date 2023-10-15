@@ -9,6 +9,7 @@ import * as SQLite from "expo-sqlite";
 import Tabs from "./app/Tabs";
 import Profile from "./app/Profile";
 import SetNewName from "./app/components/SetFirstName";
+import VideoEdukasi from "./app/VideoEdukasi";
 
 const Stack = createStackNavigator();
 const App = () => {
@@ -189,14 +190,6 @@ const App = () => {
     return null;
   }
 
-  // if (!isUserSet) {
-  //   return (
-  //     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-  //       <Text>Loading . . .</Text>
-  //     </View>
-  //   );
-  // }
-
   return (
     <View style={styles.container}>
       <StatusBar style={"dark"} />
@@ -216,6 +209,11 @@ const App = () => {
               name="SetNewName"
               component={SetNewName}
               options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="VideoEdukasi"
+              component={VideoEdukasi}
+              options={{ title: "Video Edukasi" }}
             />
           </Stack.Navigator>
         </NavigationContainer>

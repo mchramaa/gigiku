@@ -6,7 +6,7 @@ export default function MaskotHome({ style }) {
   return (
     <View>
       <AnimatedLottieView
-        source={require("./Maskot.json")}
+        source={require("./MaskotHome.json")}
         autoPlay
         loop
         style={{ ...style }}

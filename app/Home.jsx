@@ -6,7 +6,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
 import { useNavigation } from "@react-navigation/native";
 import { useAuth } from "./hooks/useAuth.zustand";
-import Box from "./components/Box";
+import Boxx from "./components/Boxx";
 import CalendarIconSVG from "../assets/icon/CalendarIconSVG";
 
 import { Entypo } from "@expo/vector-icons";
@@ -22,11 +22,11 @@ export default function Home() {
   const ProfileButton = () => {
     navigation.navigate("Profile");
   };
-  const setFirstName = () => {
-    navigation.navigate("SetNewName");
+  const RiwayatGigi = () => {
+    navigation.navigate("Alarm");
   };
-  const EditAlarm = () => {
-    navigation.navigate("EditAlarm");
+  const VideoEdukasiBtn = () => {
+    navigation.navigate("VideoEdukasi");
   };
 
   return (
@@ -111,83 +111,42 @@ export default function Home() {
               </Text>
             </View>
 
-            <Box
-              button={true}
-              width={390}
-              height={100}
-              icon={<CalendarIconSVG />}
-              tittle={"Riwayat Sikat Gigi"}
-              fontStyle={{
-                fontFamily: "Poppins-Bold",
-                fontSize: 23,
-                paddingLeft: 20,
-                color: "#1AA7EC",
-              }}
-              iconStyle={{ width: 100, height: 100 }}
-            />
-
             <View
               style={{
                 flexDirection: "row",
                 flexWrap: "wrap",
                 backgroundColor: "white",
                 borderRadius: 15,
-                elevation: 10,
+                elevation: 5,
                 shadowRadius: 3.84,
                 shadowOffset: { height: 4 },
                 shadowOpacity: 0.3,
                 gap: 20,
                 overflow: "hidden",
-                marginTop: 50,
                 padding: 15,
                 alignItems: "center",
                 justifyContent: "center",
               }}
             >
-              <Text style={{ fontFamily: "Poppins-Bold", fontSize: 30 }}>
-                VIDEO EDUKASI
-              </Text>
-              <Box
+              <Boxx
                 button={true}
-                width={355}
-                height={60}
-                icon={<Entypo name="folder-video" size={40} color="#1AA7EC" />}
+                onPress={RiwayatGigi}
+                width={"100%"}
+                height={100}
+                icon={<CalendarIconSVG />}
                 tittle={"Riwayat Sikat Gigi"}
                 fontStyle={{
                   fontFamily: "Poppins-Bold",
-                  fontSize: 20,
+                  fontSize: 23,
                   paddingLeft: 20,
                   color: "#1AA7EC",
                 }}
+                iconStyle={{ width: 100, height: 100 }}
               />
-              <Box
+
+              <Boxx
                 button={true}
-                width={355}
-                height={60}
-                icon={<VideoICN style={{ width: 50, heigh: 50 }} />}
-                tittle={"Riwayat Sikat Gigi"}
-                fontStyle={{
-                  fontFamily: "Poppins-Bold",
-                  fontSize: 20,
-                  paddingLeft: 20,
-                  color: "#1AA7EC",
-                }}
-              />
-              <Box
-                button={true}
-                width={355}
-                height={60}
-                icon={<Entypo name="folder-video" size={40} color="#1AA7EC" />}
-                tittle={"Riwayat Sikat Gigi"}
-                fontStyle={{
-                  fontFamily: "Poppins-Bold",
-                  fontSize: 20,
-                  paddingLeft: 20,
-                  color: "#1AA7EC",
-                }}
-              />
-              <Box
-                button={true}
+                onPress={VideoEdukasiBtn}
                 width={355}
                 height={60}
                 icon={<Entypo name="folder-video" size={40} color="#1AA7EC" />}

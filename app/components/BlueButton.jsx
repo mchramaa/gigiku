@@ -4,7 +4,7 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 
 export default function BlueButton({ onPress, tittle, width, height }) {
   return (
-    <TouchableOpacity onPress={onPress}>
+    <TouchableOpacity onPress={onPress} style={{ height: height + 30 }}>
       <View
         style={{
           marginTop: 15,
