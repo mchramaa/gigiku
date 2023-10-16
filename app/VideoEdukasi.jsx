@@ -19,10 +19,10 @@ export default function VideoEdukasi() {
       src: require("../assets/video/Video4.webm"),
       name: "Mitos atau fakta pada gigi anak",
     },
-    {
-      src: require("../assets/video/VideoEdu4.mp4"),
-      name: "Kapan anak harus ke dokter gigi",
-    },
+    // {
+    //   src: require("../assets/video/VideoEdu4.mp4"),
+    //   name: "Kapan anak harus ke dokter gigi",
+    // },
   ];
 
   const video = React.useRef(null);
