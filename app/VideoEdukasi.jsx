@@ -39,7 +39,7 @@ export default function VideoEdukasi() {
     }
   }
   return (
-    <LinearGradient colors={["#1AA7EC", "#90e0ef"]}>
+    <LinearGradient colors={["#ffffff", "#ffffff"]}>
       <ScrollView style={{ height: "100%", paddingHorizontal: 20 }}>
         {dataVideo.map((data, idx) => (
           <View
