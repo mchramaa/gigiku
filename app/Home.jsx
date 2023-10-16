@@ -89,7 +89,6 @@ export default function Home() {
             </View>
             <View style={{}}>
               <Text
-                onPress={notifPanduan}
                 style={{
                   textAlign: "center",
                   paddingVertical: 30,
