@@ -1,5 +1,4 @@
-import { Image, Text } from "react-native";
-import { View } from "react-native";
+import { View, Text } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import Constants from "expo-constants";
 import { Ionicons } from "@expo/vector-icons";
@@ -8,10 +7,7 @@ import { useNavigation } from "@react-navigation/native";
 import { useAuth } from "./hooks/useAuth.zustand";
 import Boxx from "./components/Boxx";
 import CalendarIconSVG from "../assets/icon/CalendarIconSVG";
-
-import { Entypo } from "@expo/vector-icons";
 import MaskotHome from "../assets/lottie/MaskotHome";
-import VideoICN from "../assets/lottie/VideoICN";
 import VidEduIcon from "../assets/lottie/VideoEducation";
 
 export default function Home() {
