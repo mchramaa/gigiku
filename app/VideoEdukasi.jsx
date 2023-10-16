@@ -1,10 +1,9 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Button, View, Text } from "react-native";
+import { StyleSheet, View, Text, Dimensions } from "react-native";
 import { Video } from "expo-av";
-import { ScreenOrientation } from "expo";
-import React from "react";
+import React, { useEffect } from "react";
 import { ScrollView } from "react-native-gesture-handler";
 import { LinearGradient } from "expo-linear-gradient";
+import * as ScreenOrientation from "expo-screen-orientation";
 
 export default function VideoEdukasi() {
   const dataVideo = [
@@ -30,20 +29,15 @@ export default function VideoEdukasi() {
   const secondVideo = React.useRef(null);
   const [status, setStatus] = React.useState({});
 
-  const handleFullscreenUpdate = async ({ fullscreenUpdate }) => {
-    if (fullscreenUpdate === Video.FULLSCREEN_UPDATE_PLAYER_DID_PRESENT) {
-      await ScreenOrientation.lockAsync(
-        ScreenOrientation.OrientationLock.LANDSCAPE
-      );
-    } else if (
-      fullscreenUpdate === Video.FULLSCREEN_UPDATE_PLAYER_WILL_DISMISS
-    ) {
-      await ScreenOrientation.lockAsync(
-        ScreenOrientation.OrientationLock.PORTRAIT
-      );
+  function setOrientation() {
+    if (Dimensions.get("window").height > Dimensions.get("window").width) {
+      //Device is in portrait mode, rotate to landscape mode.
+      ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.LANDSCAPE);
+    } else {
+      //Device is in landscape mode, rotate to portrait mode.
+      ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT);
     }
-  };
-
+  }
   return (
     <LinearGradient colors={["#1AA7EC", "#90e0ef"]}>
       <ScrollView style={{ height: "100%", paddingHorizontal: 20 }}>
@@ -57,7 +51,6 @@ export default function VideoEdukasi() {
               overflow: "hidden",
               borderRadius: 15,
               marginVertical: 20,
-              paddingBottom: 10,
             }}
           >
             <Text
@@ -67,20 +60,19 @@ export default function VideoEdukasi() {
                 color: "white",
                 fontSize: 17,
                 fontFamily: "Poppins-SemiBold",
-                marginBottom: 10,
               }}
             >
               {data.name}
             </Text>
             <Video
               ref={video}
-              style={{ height: 210, width: "100%" }}
+              style={{ height: 215, width: "100%" }}
               source={data.src}
               useNativeControls
               resizeMode="contain"
               isLooping
               onPlaybackStatusUpdate={setStatus}
-              onFullscreenUpdate={handleFullscreenUpdate}
+              onFullscreenUpdate={setOrientation}
             />
           </View>
         ))}

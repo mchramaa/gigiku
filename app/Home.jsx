@@ -12,6 +12,7 @@ import CalendarIconSVG from "../assets/icon/CalendarIconSVG";
 import { Entypo } from "@expo/vector-icons";
 import MaskotHome from "../assets/lottie/MaskotHome";
 import VideoICN from "../assets/lottie/VideoICN";
+import VidEduIcon from "../assets/lottie/VideoEducation";
 
 export default function Home() {
   const { user } = useAuth();
@@ -147,14 +148,15 @@ export default function Home() {
               <Boxx
                 button={true}
                 onPress={VideoEdukasiBtn}
-                width={355}
-                height={60}
-                icon={<Entypo name="folder-video" size={40} color="#1AA7EC" />}
-                tittle={"Riwayat Sikat Gigi"}
+                width={"100%"}
+                height={100}
+                icon={<VidEduIcon style={{ width: 100, height: 100 }} />}
+                tittle={"Video Edukasi"}
                 fontStyle={{
                   fontFamily: "Poppins-Bold",
-                  fontSize: 20,
+                  fontSize: 23,
                   paddingLeft: 20,
+                  paddingRight: 45,
                   color: "#1AA7EC",
                 }}
               />
