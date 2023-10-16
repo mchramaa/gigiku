@@ -120,11 +120,8 @@ export default function Alarm({ navigation }) {
 
       const subscription =
         Notifications.addNotificationResponseReceivedListener((response) => {
-          console.log(response.actionIdentifier);
-          if (
-            response.actionIdentifier === "default" &&
-            response.notification.request.content.data.screen === "default"
-          ) {
+          console.log(response.notification.request.content.data.screen);
+          if (response.notification.request.content.data.screen === "default") {
             navigation.navigate("PanduanFromNotif");
           }
         });

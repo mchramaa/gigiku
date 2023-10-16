@@ -169,7 +169,6 @@ const App = () => {
   }
 
   useEffect(() => {
-    emptyTable();
     getUserData()
       .then((userRows) => {
         if (userRows.length > 0) {
