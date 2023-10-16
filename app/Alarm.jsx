@@ -56,8 +56,8 @@ export default function Alarm({ navigation }) {
       content: {
         title: `${data.title}`,
         body: `${data.body}`,
-        data: { screen: "default" },
       },
+      data: { screen: "default" },
       trigger: {
         hour: data.hour,
         minute: data.minute,
@@ -102,6 +102,17 @@ export default function Alarm({ navigation }) {
 
   useFocusEffect(
     useCallback(() => {
+      notificationListener.current =
+        Notifications.addNotificationReceivedListener((notification) => {
+          setNotification(notification);
+        });
+
+      responseListener.current =
+        Notifications.addNotificationResponseReceivedListener((response) => {
+          if (response.request.content.data.screen == "default") {
+            navigation.navigate("PanduanFromNotif");
+          }
+        });
       getAlarmData()
         .then((res) => {
           res.forEach((element) => {
@@ -117,18 +128,6 @@ export default function Alarm({ navigation }) {
         })
         .catch((err) => console.log(err));
       getPermission();
-
-      notificationListener.current =
-        Notifications.addNotificationReceivedListener((notification) => {
-          setNotification(notification);
-        });
-
-      responseListener.current =
-        Notifications.addNotificationResponseReceivedListener((response) => {
-          if (response.request.content.data.screen == "default") {
-            navigation.navigate("PanduanFromNotif");
-          }
-        });
 
       return () => {
         Notifications.removeNotificationSubscription(
