@@ -86,7 +86,7 @@ const App = () => {
       db.transaction((tx) => {
         tx.executeSql(
           `INSERT INTO alarms (tag, hours, minute) values (?, ?, ?)`,
-          ["Sikat Gigi Pagi", "23", "15"],
+          ["Sikat Gigi Pagi", "23", "46"],
           (_, { insertId, rowsAffected }) => {
             resolve({ insertId: insertId, rowsAffected: rowsAffected });
           },
@@ -96,7 +96,7 @@ const App = () => {
         );
         tx.executeSql(
           `INSERT INTO alarms (tag, hours, minute) values (?, ?, ?)`,
-          ["Sikat Gigi Malam", "23", "18"],
+          ["Sikat Gigi Malam", "23", "45"],
           (_, { insertId, rowsAffected }) => {
             resolve({ insertId: insertId, rowsAffected: rowsAffected });
           },

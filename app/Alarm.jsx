@@ -110,18 +110,19 @@ export default function Alarm({ navigation }) {
 
       responseListener.current =
         Notifications.addNotificationResponseReceivedListener((response) => {
-          console.log("here", response.request);
-          console.log("here2", response);
-          // if (response.request.content.data.screen == "default") {
-          //   navigation.navigate("PanduanFromNotif");
-          // }
+          const JSONResponse = JSON.parse(response);
+          console.log("here", JSONResponse.request);
+          console.log("here2", JSONResponse);
+          if (JSONResponse.request.content.data.screen == "default") {
+            navigation.navigate("PanduanFromNotif");
+          }
         });
 
       const subscription =
         Notifications.addNotificationResponseReceivedListener((response) => {
           if (
             response.actionIdentifier === "default" &&
-            response.notification.request.content.data.screen === "Notifikasi"
+            response.notification.request.content.data.screen === "default"
           ) {
             navigation.navigate("PanduanFromNotif");
           }
