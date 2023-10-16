@@ -13,7 +13,7 @@ export default function VideoEdukasi() {
     },
     {
       src: require("../assets/video/Video2.mp4"),
-      name: "Pengalaman Datang Ke Dokter Gigi",
+      name: "Persepsi Orang Awam Dan Anak Tentang Pergi Ke Dokter Gigi",
     },
     {
       src: require("../assets/video/Video3.mp4"),
@@ -56,9 +56,11 @@ export default function VideoEdukasi() {
             <Text
               style={{
                 paddingHorizontal: 10,
+                paddingVertical: 10,
                 backgroundColor: "#1AA7EC",
                 color: "white",
                 fontSize: 17,
+                textAlign: "center",
                 fontFamily: "Poppins-SemiBold",
               }}
             >
