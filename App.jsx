@@ -86,7 +86,7 @@ const App = () => {
       db.transaction((tx) => {
         tx.executeSql(
           `INSERT INTO alarms (tag, hours, minute) values (?, ?, ?)`,
-          ["Sikat Gigi Pagi", "21", "04"],
+          ["Sikat Gigi Pagi", "23", "15"],
           (_, { insertId, rowsAffected }) => {
             resolve({ insertId: insertId, rowsAffected: rowsAffected });
           },
@@ -96,7 +96,7 @@ const App = () => {
         );
         tx.executeSql(
           `INSERT INTO alarms (tag, hours, minute) values (?, ?, ?)`,
-          ["Sikat Gigi Malam", "21", "05"],
+          ["Sikat Gigi Malam", "23", "18"],
           (_, { insertId, rowsAffected }) => {
             resolve({ insertId: insertId, rowsAffected: rowsAffected });
           },
@@ -169,6 +169,7 @@ const App = () => {
   }
 
   useEffect(() => {
+    emptyTable();
     getUserData()
       .then((userRows) => {
         if (userRows.length > 0) {

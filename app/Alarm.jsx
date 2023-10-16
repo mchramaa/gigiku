@@ -63,6 +63,7 @@ export default function Alarm({ navigation }) {
         minute: data.minute,
         repeats: true,
       },
+      sound: "./assets/notfication_sound.wav",
     });
   };
 
@@ -109,7 +110,19 @@ export default function Alarm({ navigation }) {
 
       responseListener.current =
         Notifications.addNotificationResponseReceivedListener((response) => {
-          if (response.request.content.data.screen == "default") {
+          console.log("here", response.request);
+          console.log("here2", response);
+          // if (response.request.content.data.screen == "default") {
+          //   navigation.navigate("PanduanFromNotif");
+          // }
+        });
+
+      const subscription =
+        Notifications.addNotificationResponseReceivedListener((response) => {
+          if (
+            response.actionIdentifier === "default" &&
+            response.notification.request.content.data.screen === "Notifikasi"
+          ) {
             navigation.navigate("PanduanFromNotif");
           }
         });
@@ -134,6 +147,7 @@ export default function Alarm({ navigation }) {
           notificationListener.current
         );
         Notifications.removeNotificationSubscription(responseListener.current);
+        subscription.remove();
       };
     }, [])
   );
