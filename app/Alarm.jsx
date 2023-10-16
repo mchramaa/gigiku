@@ -56,8 +56,8 @@ export default function Alarm({ navigation }) {
       content: {
         title: `${data.title}`,
         body: `${data.body}`,
+        data: { screen: "default" },
       },
-      data: { screen: "default" },
       trigger: {
         hour: data.hour,
         minute: data.minute,
@@ -120,7 +120,7 @@ export default function Alarm({ navigation }) {
 
       const subscription =
         Notifications.addNotificationResponseReceivedListener((response) => {
-          console.log(response.notification.request.content.data.screen);
+          console.log("data", response.notification.request.content);
           if (response.notification.request.content.data.screen === "default") {
             navigation.navigate("PanduanFromNotif");
           }
