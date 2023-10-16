@@ -5,9 +5,9 @@ import * as SQLite from "expo-sqlite";
 import { getTodayString } from "./helpers/getTodayString";
 import StepPlayer from "./util/StepPlayer";
 import MaskotGuide from "../assets/lottie/MaskotGuide";
-import ReactNativeModal from "react-native-modal";
 import { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
+import ReactNativeModal from "react-native-modal";
 
 export default function PanduanFromNotif() {
   const navigation = useNavigation();
@@ -20,25 +20,28 @@ export default function PanduanFromNotif() {
 
   function createReport() {
     const todayString = getTodayString();
-    return new Promise((resolve, reject) => {
-      db.transaction((tx) => {
-        tx.executeSql(
-          "INSERT INTO reports (created_at) VALUES (?)",
-          [`${todayString}`],
-          (_, { insertId, rowsAffected }) => {
-            if (rowsAffected > 0) {
-              console.log(rowsAffected);
-              resolve(rowsAffected, insertId);
-            } else {
-              reject(new Error("Failed to insert user"));
+    return (
+      new Promise((resolve, reject) => {
+        db.transaction((tx) => {
+          tx.executeSql(
+            "INSERT INTO reports (created_at) VALUES (?)",
+            [`${todayString}`],
+            (_, { insertId, rowsAffected }) => {
+              if (rowsAffected > 0) {
+                console.log(rowsAffected);
+                resolve(rowsAffected, insertId);
+              } else {
+                reject(new Error("Failed to insert user"));
+              }
+            },
+            (_, error) => {
+              reject(error);
             }
-          },
-          (_, error) => {
-            reject(error);
-          }
-        );
-      });
-    });
+          );
+        });
+      }),
+      navigation.navigate("Home")
+    );
   }
 
   const goToHome = () => {
@@ -206,10 +209,7 @@ export default function PanduanFromNotif() {
                   </Text>
                 </View>
               </TouchableOpacity>
-              <TouchableOpacity
-                onPress={createReport && toggleModal && goToHome}
-                style={{ height: 80 }}
-              >
+              <TouchableOpacity onPress={createReport} style={{ height: 80 }}>
                 <View
                   style={{
                     marginTop: 15,
