@@ -36,8 +36,8 @@
       [
         "expo-notifications",
         {
-          "icon": "./assets/notification_icon.png",
-          "sounds": ["./assets/notfication_sound.wav"]
+          "icon": "./assets/icon.png",
+          "sounds": ["./assets/sound.wav"]
         }
       ]
     ]
