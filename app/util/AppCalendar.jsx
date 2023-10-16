@@ -73,8 +73,10 @@ export default function AppCalendar() {
     }
   });
 
+  const [certiBtnDisable, setCertiBtnDisable] = useState(true);
+
   //Disabel Claim Certificate
-  let certiBtnDisable = false;
+  // let certiBtnDisable = false;
   //link Claim Certi
   function linkCertiBtn() {
     const url = "https://forms.gle/9mJFJ88GjN6CJvde6";
@@ -89,6 +91,17 @@ export default function AppCalendar() {
     borderRadius: 15,
     zIndex: -10,
   };
+
+  useFocusEffect(
+    useCallback(() => {
+      const riwayat14 = dataSikatGigi.filter((item) => item.status >= 2).length;
+      if (riwayat14 >= 14) {
+        setCertiBtnDisable(false);
+      } else {
+        setCertiBtnDisable(true);
+      }
+    }, [])
+  );
 
   return (
     <View

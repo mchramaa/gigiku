@@ -4,7 +4,12 @@ import DateTimePicker from "@react-native-community/datetimepicker";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import * as SQLite from "expo-sqlite";
 
-export default function AlarmBox({ tittle, alarmData }) {
+export default function AlarmBox({
+  tittle,
+  alarmData,
+  notifications,
+  initNotification,
+}) {
   const db = SQLite.openDatabase("gigiku.db");
 
   const [date, setDate] = useState(new Date(setDefaultAlarm()));
@@ -64,7 +69,15 @@ export default function AlarmBox({ tittle, alarmData }) {
         [payload.tag, payload.hours, payload.minute, payload.id],
         (_, { rowsAffected }) => {
           if (rowsAffected > 0) {
-            console.log("update success");
+            notifications.cancelScheduledNotificationAsync(`${alarmData.tag}`);
+            initNotification({
+              title: `${payload.tag}`,
+              body: `Alarm ${payload.tag}`,
+              hour: Number(ltrimFirstZero(`${payload.hours}`)),
+              minute: Number(ltrimFirstZero(`${payload.minute}`)),
+              identifier: `${payload.tag}`,
+            });
+            console.log("ok");
           } else {
             reject(new Error("User not found"));
           }

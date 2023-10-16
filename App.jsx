@@ -1,5 +1,5 @@
 import { View, StyleSheet, Text } from "react-native";
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { StatusBar } from "expo-status-bar";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
@@ -10,12 +10,14 @@ import Tabs from "./app/Tabs";
 import Profile from "./app/Profile";
 import SetNewName from "./app/components/SetFirstName";
 import VideoEdukasi from "./app/VideoEdukasi";
+import PanduanFromNotif from "./app/PanduanFromNotif";
 
 const Stack = createStackNavigator();
 const App = () => {
   const { user, setUser } = useAuth();
   const [isUserSet, setIsUserSet] = useState(false);
   const [isAlarmTable, setIsAlarmTable] = useState(false);
+
   const [fontsLoaded] = useFonts({
     "Poppins-Bold": require("./assets/fonts/Poppins-Bold.ttf"),
     "Poppins-ExtraBold": require("./assets/fonts/Poppins-ExtraBold.ttf"),
@@ -84,7 +86,7 @@ const App = () => {
       db.transaction((tx) => {
         tx.executeSql(
           `INSERT INTO alarms (tag, hours, minute) values (?, ?, ?)`,
-          ["Sikat Gigi Pagi", "06", "01"],
+          ["Sikat Gigi Pagi", "21", "04"],
           (_, { insertId, rowsAffected }) => {
             resolve({ insertId: insertId, rowsAffected: rowsAffected });
           },
@@ -94,7 +96,7 @@ const App = () => {
         );
         tx.executeSql(
           `INSERT INTO alarms (tag, hours, minute) values (?, ?, ?)`,
-          ["Sikat Gigi Malam", "18", "01"],
+          ["Sikat Gigi Malam", "21", "05"],
           (_, { insertId, rowsAffected }) => {
             resolve({ insertId: insertId, rowsAffected: rowsAffected });
           },
@@ -214,6 +216,11 @@ const App = () => {
               name="VideoEdukasi"
               component={VideoEdukasi}
               options={{ title: "Video Edukasi" }}
+            />
+            <Stack.Screen
+              name="PanduanFromNotif"
+              component={PanduanFromNotif}
+              options={{ title: "Panduan Sikat Gigi" }}
             />
           </Stack.Navigator>
         </NavigationContainer>
