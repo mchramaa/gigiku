@@ -2,38 +2,10 @@ import { Text, View } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import Constants from "expo-constants";
 import { ScrollView } from "react-native-gesture-handler";
-import BlueButton from "./components/BlueButton";
-import * as SQLite from "expo-sqlite";
-import { getTodayString } from "./helpers/getTodayString";
 import StepPlayer from "./util/StepPlayer";
 import MaskotGuide from "../assets/lottie/MaskotGuide";
 
 export default function Panduan() {
-  const db = SQLite.openDatabase("gigiku.db");
-
-  function createReport() {
-    const todayString = getTodayString();
-    return new Promise((resolve, reject) => {
-      db.transaction((tx) => {
-        tx.executeSql(
-          "INSERT INTO reports (created_at) VALUES (?)",
-          [`${todayString}`],
-          (_, { insertId, rowsAffected }) => {
-            if (rowsAffected > 0) {
-              console.log(rowsAffected);
-              resolve(rowsAffected, insertId);
-            } else {
-              reject(new Error("Failed to insert user"));
-            }
-          },
-          (_, error) => {
-            reject(error);
-          }
-        );
-      });
-    });
-  }
-
   const dataStep = [
     {
       src: require("../assets/video/Step1.webm"),
@@ -128,12 +100,6 @@ export default function Panduan() {
                 </Text>
               </View>
             ))}
-            <BlueButton
-              tittle={"Selesai Sikat Gigi"}
-              width={300}
-              height={50}
-              onPress={createReport}
-            />
           </View>
         </ScrollView>
       </View>

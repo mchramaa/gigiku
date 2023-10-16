@@ -220,7 +220,7 @@ const App = () => {
             <Stack.Screen
               name="PanduanFromNotif"
               component={PanduanFromNotif}
-              options={{ title: "Panduan Sikat Gigi" }}
+              options={{ title: "Panduan Sikat Gigi", headerShown: false }}
             />
           </Stack.Navigator>
         </NavigationContainer>

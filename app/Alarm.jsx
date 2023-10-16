@@ -7,7 +7,6 @@ import AlarmBox from "./components/AlarmBox";
 import AppCalendar from "./util/AppCalendar";
 import { ScrollView } from "react-native-gesture-handler";
 import MaskotYeay from "../assets/lottie/MaskotYeay";
-
 import * as Notifications from "expo-notifications";
 import storage from "@react-native-async-storage/async-storage";
 import { useFocusEffect } from "@react-navigation/native";
@@ -57,7 +56,7 @@ export default function Alarm({ navigation }) {
         title: `${data.title}`,
         body: `${data.body}`,
         data: { screen: "default" },
-        sound: "./assets/notfication_sound.wav",
+        sound: "./assets/sound.wav",
       },
       trigger: {
         hour: data.hour,
@@ -93,12 +92,9 @@ export default function Alarm({ navigation }) {
         importance: Notifications.AndroidImportance.MAX,
         vibrationPattern: [0, 250, 250, 250],
         lightColor: "#FF231F7C",
-        sound: "notfication_sound.wav",
+        sound: "sound.wav",
       });
     }
-  };
-  const SetAlarm = () => {
-    navigation.navigate("SetAlarm");
   };
 
   useFocusEffect(

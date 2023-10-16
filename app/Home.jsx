@@ -25,6 +25,9 @@ export default function Home() {
   const VideoEdukasiBtn = () => {
     navigation.navigate("VideoEdukasi");
   };
+  const notifPanduan = () => {
+    navigation.navigate("PanduanFromNotif");
+  };
 
   return (
     <LinearGradient colors={["#1AA7EC", "#90e0ef"]}>
@@ -86,6 +89,7 @@ export default function Home() {
             </View>
             <View style={{}}>
               <Text
+                onPress={notifPanduan}
                 style={{
                   textAlign: "center",
                   paddingVertical: 30,
