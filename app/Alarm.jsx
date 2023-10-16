@@ -52,11 +52,11 @@ export default function Alarm({ navigation }) {
 
   const initNotification = async (data) => {
     await Notifications.scheduleNotificationAsync({
-      identifier: "pagi",
+      identifier: `${data.identifier}`,
       content: {
         title: `${data.title}`,
         body: `${data.body}`,
-        data: { data: "data goes here" },
+        data: { screen: "default" },
       },
       trigger: {
         hour: data.hour,
@@ -113,8 +113,6 @@ export default function Alarm({ navigation }) {
               minute: Number(ltrimFirstZero(`${element.minute}`)),
               identifier: `${element.tag}`,
             });
-            console.log(Number(ltrimFirstZero(`${element.hours}`)));
-            console.log(Number(ltrimFirstZero(`${element.minute}`)));
           });
         })
         .catch((err) => console.log(err));
@@ -127,7 +125,7 @@ export default function Alarm({ navigation }) {
 
       responseListener.current =
         Notifications.addNotificationResponseReceivedListener((response) => {
-          if (response.actionIdentifier == "default") {
+          if (response.request.content.data.screen == "default") {
             navigation.navigate("PanduanFromNotif");
           }
         });
