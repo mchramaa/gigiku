@@ -56,7 +56,7 @@ export default function Alarm({ navigation }) {
         title: `${data.title}`,
         body: `${data.body}`,
         data: { screen: "default" },
-        sound: "./assets/sound.wav",
+        sound: "default",
       },
       trigger: {
         hour: data.hour,

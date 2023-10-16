@@ -49,23 +49,23 @@ export default function PanduanFromNotif() {
   };
   const dataStep = [
     {
-      src: require("../assets/video/Step1.webm"),
+      src: require("../assets/Step1.webm"),
       note: "Tuangkan Pasta gigi pada sikat gigi sebesar biji jagung,  Gerakan sikat gigi pada gigi depan atas bawah dengan tegak lurus sumbu gigi ",
     },
     {
-      src: require("../assets/video/Step2.webm"),
+      src: require("../assets/Step2.webm"),
       note: "Gerakan sikat gigi pada gigi depan dengan sudut 45 derajat dari sisi merah",
     },
     {
-      src: require("../assets/video/Step3.webm"),
+      src: require("../assets/Step3.webm"),
       note: "Tuangkan Pasta gigi pada sikat gigi sebesar biji jagung",
     },
     {
-      src: require("../assets/video/Step4.webm"),
+      src: require("../assets/Step4.webm"),
       note: "Gerakan sikat gigi pada gigi belakang dengan menarik dari depan ke belakang pada permukaan",
     },
     {
-      src: require("../assets/video/Step5.webm"),
+      src: require("../assets/Step5.webm"),
       note: "Sikat pula lidah secara perlahan",
     },
   ];
@@ -107,38 +107,163 @@ export default function PanduanFromNotif() {
             paddingHorizontal: 50,
           }}
         >
-          {dataStep.map((data, idx) => (
-            <View
-              key={idx}
-              style={{
-                width: "100%",
-                backgroundColor: "white",
-                elevation: 3,
-                shadowOpacity: 0.2,
-                shadowOffset: { height: 1 },
-                borderRadius: 10,
-                paddingTop: 20,
-                alignItems: "center",
-                paddingHorizontal: 10,
-              }}
-            >
-              <StepPlayer
-                source={data.src}
-                style={{ width: "100%", height: 200 }}
-              />
-              <Text
+          <View
+            style={{
+              alignItems: "center",
+              gap: 20,
+              marginBottom: 50,
+              paddingHorizontal: 50,
+            }}
+          >
+           
+              <View
+             
                 style={{
+                  width: "100%",
+                  backgroundColor: "white",
+                  elevation: 3,
+                  shadowOpacity: 0.2,
+                  shadowOffset: { height: 1 },
+                  borderRadius: 10,
+                  paddingTop: 20,
+                  alignItems: "center",
                   paddingHorizontal: 10,
-                  textAlign: "center",
-                  fontSize: 15,
-                  fontFamily: "Poppins-SemiBold",
-                  paddingBottom: 20,
                 }}
               >
-                {data.note}
-              </Text>
-            </View>
-          ))}
+                <StepPlayer
+                  source={require("../assets/Step1.webm")}
+                  style={{ width: "100%", height: 200 }}
+                />
+                <Text
+                  style={{
+                    paddingHorizontal: 10,
+                    textAlign: "center",
+                    fontSize: 15,
+                    fontFamily: "Poppins-SemiBold",
+                    paddingBottom: 20,
+                  }}
+                >
+                 Tuangkan Pasta gigi pada sikat gigi sebesar biji jagung,  Gerakan sikat gigi pada gigi depan atas bawah dengan tegak lurus sumbu gigi
+                </Text>
+              </View>
+
+              <View
+                style={{
+                  width: "100%",
+                  backgroundColor: "white",
+                  elevation: 3,
+                  shadowOpacity: 0.2,
+                  shadowOffset: { height: 1 },
+                  borderRadius: 10,
+                  paddingTop: 20,
+                  alignItems: "center",
+                  paddingHorizontal: 10,
+                }}
+              >
+                <StepPlayer
+                  source={require("../assets/Step2.webm")}
+                  style={{ width: "100%", height: 200 }}
+                />
+                <Text
+                  style={{
+                    paddingHorizontal: 10,
+                    textAlign: "center",
+                    fontSize: 15,
+                    fontFamily: "Poppins-SemiBold",
+                    paddingBottom: 20,
+                  }}
+                >
+                  Gerakan sikat gigi pada gigi depan dengan sudut 45 derajat dari sisi merah
+                </Text>
+              </View>
+              <View
+                style={{
+                  width: "100%",
+                  backgroundColor: "white",
+                  elevation: 3,
+                  shadowOpacity: 0.2,
+                  shadowOffset: { height: 1 },
+                  borderRadius: 10,
+                  paddingTop: 20,
+                  alignItems: "center",
+                  paddingHorizontal: 10,
+                }}
+              >
+                <StepPlayer
+                  source={require("../assets/Step3.webm")}
+                  style={{ width: "100%", height: 200 }}
+                />
+                <Text
+                  style={{
+                    paddingHorizontal: 10,
+                    textAlign: "center",
+                    fontSize: 15,
+                    fontFamily: "Poppins-SemiBold",
+                    paddingBottom: 20,
+                  }}
+                >
+                  Gosok Gigi Kanan Ke kiri untuk membersihkan sela sela gigi
+                </Text>
+              </View>
+              <View
+                style={{
+                  width: "100%",
+                  backgroundColor: "white",
+                  elevation: 3,
+                  shadowOpacity: 0.2,
+                  shadowOffset: { height: 1 },
+                  borderRadius: 10,
+                  paddingTop: 20,
+                  alignItems: "center",
+                  paddingHorizontal: 10,
+                }}
+              >
+                <StepPlayer
+                  source={require("../assets/Step5.webm")}
+                  style={{ width: "100%", height: 200 }}
+                />
+                <Text
+                  style={{
+                    paddingHorizontal: 10,
+                    textAlign: "center",
+                    fontSize: 15,
+                    fontFamily: "Poppins-SemiBold",
+                    paddingBottom: 20,
+                  }}
+                >
+                 Sikat pula lidah secara perlahan
+                </Text>
+              </View>
+              <View
+                style={{
+                  width: "100%",
+                  backgroundColor: "white",
+                  elevation: 3,
+                  shadowOpacity: 0.2,
+                  shadowOffset: { height: 1 },
+                  borderRadius: 10,
+                  paddingTop: 20,
+                  alignItems: "center",
+                  paddingHorizontal: 10,
+                }}
+              >
+                <StepPlayer
+                  source={require("../assets/Step4.webm")}
+                  style={{ width: "100%", height: 200 }}
+                />
+                <Text
+                  style={{
+                    paddingHorizontal: 10,
+                    textAlign: "center",
+                    fontSize: 15,
+                    fontFamily: "Poppins-SemiBold",
+                    paddingBottom: 20,
+                  }}
+                >
+                  Gerakan sikat gigi pada gigi belakang dengan menarik dari depan ke belakang pada permukaan
+                </Text>
+              </View>
+          </View>
           <TouchableOpacity onPress={toggleModal} style={{ height: 80 }}>
             <View
               style={{

@@ -6,25 +6,6 @@ import { LinearGradient } from "expo-linear-gradient";
 import * as ScreenOrientation from "expo-screen-orientation";
 
 export default function VideoEdukasi() {
-  const dataVideo = [
-    {
-      src: require("../assets/video/Video1.mp4"),
-      name: "Pentingnya Menjaga Kesehatan Gigi Anak",
-    },
-    {
-      src: require("../assets/video/Video2.mp4"),
-      name: "Persepsi Orang Awam Dan Anak Tentang Pergi Ke Dokter Gigi",
-    },
-    {
-      src: require("../assets/video/Video3.mp4"),
-      name: "Mitos Atau Fakta Pada Gigi Anak",
-    },
-    {
-      src: require("../assets/video/Video4.mp4"),
-      name: "Kapan Anak Harus Ke Dokter Gigi",
-    },
-  ];
-
   const video = React.useRef(null);
   const secondVideo = React.useRef(null);
   const [status, setStatus] = React.useState({});
@@ -41,43 +22,142 @@ export default function VideoEdukasi() {
   return (
     <LinearGradient colors={["#ffffff", "#ffffff"]}>
       <ScrollView style={{ height: "100%", paddingHorizontal: 20 }}>
-        {dataVideo.map((data, idx) => (
-          <View
-            key={idx}
+        <View
+          style={{
+            width: "100%",
+            backgroundColor: "white",
+            elevation: 3,
+            overflow: "hidden",
+            borderRadius: 15,
+            marginVertical: 20,
+          }}
+        >
+          <Text
             style={{
-              width: "100%",
-              backgroundColor: "white",
-              elevation: 3,
-              overflow: "hidden",
-              borderRadius: 15,
-              marginVertical: 20,
+              paddingHorizontal: 10,
+              paddingVertical: 10,
+              backgroundColor: "#1AA7EC",
+              color: "white",
+              fontSize: 17,
+              textAlign: "center",
+              fontFamily: "Poppins-SemiBold",
             }}
           >
-            <Text
-              style={{
-                paddingHorizontal: 10,
-                paddingVertical: 10,
-                backgroundColor: "#1AA7EC",
-                color: "white",
-                fontSize: 17,
-                textAlign: "center",
-                fontFamily: "Poppins-SemiBold",
-              }}
-            >
-              {data.name}
-            </Text>
-            <Video
-              ref={video}
-              style={{ height: 220, width: "100%" }}
-              source={data.src}
-              useNativeControls
-              resizeMode="contain"
-              isLooping
-              onPlaybackStatusUpdate={setStatus}
-              onFullscreenUpdate={setOrientation}
-            />
-          </View>
-        ))}
+            Pentingnya Menjaga Kesehatan Gigi Anak
+          </Text>
+          <Video
+            ref={video}
+            style={{ height: 220, width: "100%" }}
+            source={require("../assets/Video1.mp4")}
+            useNativeControls
+            resizeMode="contain"
+            isLooping
+            onPlaybackStatusUpdate={setStatus}
+            onFullscreenUpdate={setOrientation}
+          />
+        </View>
+        <View
+          style={{
+            width: "100%",
+            backgroundColor: "white",
+            elevation: 3,
+            overflow: "hidden",
+            borderRadius: 15,
+            marginVertical: 20,
+          }}
+        >
+          <Text
+            style={{
+              paddingHorizontal: 10,
+              paddingVertical: 10,
+              backgroundColor: "#1AA7EC",
+              color: "white",
+              fontSize: 17,
+              textAlign: "center",
+              fontFamily: "Poppins-SemiBold",
+            }}
+          >
+            Persepsi Orang Awam Dan Anak Tentang Pergi Ke Dokter Gigi
+          </Text>
+          <Video
+            ref={video}
+            style={{ height: 220, width: "100%" }}
+            source={require("../assets/Video2.mp4")}
+            useNativeControls
+            resizeMode="contain"
+            isLooping
+            onPlaybackStatusUpdate={setStatus}
+            onFullscreenUpdate={setOrientation}
+          />
+        </View>
+        <View
+          style={{
+            width: "100%",
+            backgroundColor: "white",
+            elevation: 3,
+            overflow: "hidden",
+            borderRadius: 15,
+            marginVertical: 20,
+          }}
+        >
+          <Text
+            style={{
+              paddingHorizontal: 10,
+              paddingVertical: 10,
+              backgroundColor: "#1AA7EC",
+              color: "white",
+              fontSize: 17,
+              textAlign: "center",
+              fontFamily: "Poppins-SemiBold",
+            }}
+          >
+            Mitos Atau Fakta Pada Gigi Anak
+          </Text>
+          <Video
+            ref={video}
+            style={{ height: 220, width: "100%" }}
+            source={require("../assets/Video3.mp4")}
+            useNativeControls
+            resizeMode="contain"
+            isLooping
+            onPlaybackStatusUpdate={setStatus}
+            onFullscreenUpdate={setOrientation}
+          />
+        </View>
+        <View
+          style={{
+            width: "100%",
+            backgroundColor: "white",
+            elevation: 3,
+            overflow: "hidden",
+            borderRadius: 15,
+            marginVertical: 20,
+          }}
+        >
+          <Text
+            style={{
+              paddingHorizontal: 10,
+              paddingVertical: 10,
+              backgroundColor: "#1AA7EC",
+              color: "white",
+              fontSize: 17,
+              textAlign: "center",
+              fontFamily: "Poppins-SemiBold",
+            }}
+          >
+            Kapan Anak Harus Ke Dokter Gigi
+          </Text>
+          <Video
+            ref={video}
+            style={{ height: 220, width: "100%" }}
+            source={require("../assets/Video4.mp4")}
+            useNativeControls
+            resizeMode="contain"
+            isLooping
+            onPlaybackStatusUpdate={setStatus}
+            onFullscreenUpdate={setOrientation}
+          />
+        </View>
       </ScrollView>
     </LinearGradient>
   );
