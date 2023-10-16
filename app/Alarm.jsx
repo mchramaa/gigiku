@@ -110,16 +110,17 @@ export default function Alarm({ navigation }) {
 
       responseListener.current =
         Notifications.addNotificationResponseReceivedListener((response) => {
-          const JSONResponse = JSON.parse(response);
-          console.log("here", JSONResponse.request);
-          console.log("here2", JSONResponse);
-          if (JSONResponse.request.content.data.screen == "default") {
-            navigation.navigate("PanduanFromNotif");
-          }
+          // const JSONResponse = JSON.parse(response);
+          // console.log("here", JSONResponse.request);
+          // console.log("here2", JSONResponse);
+          // if (JSONResponse.request.content.data.screen == "default") {
+          //   navigation.navigate("PanduanFromNotif");
+          // }
         });
 
       const subscription =
         Notifications.addNotificationResponseReceivedListener((response) => {
+          console.log(response.actionIdentifier);
           if (
             response.actionIdentifier === "default" &&
             response.notification.request.content.data.screen === "default"
