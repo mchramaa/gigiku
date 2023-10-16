@@ -57,13 +57,13 @@ export default function Alarm({ navigation }) {
         title: `${data.title}`,
         body: `${data.body}`,
         data: { screen: "default" },
+        sound: "./assets/notfication_sound.wav",
       },
       trigger: {
         hour: data.hour,
         minute: data.minute,
         repeats: true,
       },
-      sound: "./assets/notfication_sound.wav",
     });
   };
 
