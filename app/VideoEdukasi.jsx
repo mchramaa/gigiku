@@ -8,21 +8,21 @@ import * as ScreenOrientation from "expo-screen-orientation";
 export default function VideoEdukasi() {
   const dataVideo = [
     {
-      src: require("../assets/video/Video4.webm"),
-      name: "Pentingnya kesehatan gigi anak",
+      src: require("../assets/video/Video1.mp4"),
+      name: "Pentingnya Menjaga Kesehatan Gigi Anak",
     },
     {
-      src: require("../assets/video/Video4.webm"),
-      name: "Pengalaman datang ke dokter gigi",
+      src: require("../assets/video/Video2.mp4"),
+      name: "Persepsi Orang Awam Dan Anak Tentang Pergi Ke Dokter Gigi",
     },
     {
-      src: require("../assets/video/Video4.webm"),
-      name: "Mitos atau fakta pada gigi anak",
+      src: require("../assets/video/Video3.mp4"),
+      name: "Mitos Atau Fakta Pada Gigi Anak",
     },
-    // {
-    //   src: require("../assets/video/VideoEdu4.mp4"),
-    //   name: "Kapan anak harus ke dokter gigi",
-    // },
+    {
+      src: require("../assets/video/Video4.mp4"),
+      name: "Kapan Anak Harus Ke Dokter Gigi",
+    },
   ];
 
   const video = React.useRef(null);
@@ -56,9 +56,11 @@ export default function VideoEdukasi() {
             <Text
               style={{
                 paddingHorizontal: 10,
+                paddingVertical: 10,
                 backgroundColor: "#1AA7EC",
                 color: "white",
                 fontSize: 17,
+                textAlign: "center",
                 fontFamily: "Poppins-SemiBold",
               }}
             >
@@ -66,7 +68,7 @@ export default function VideoEdukasi() {
             </Text>
             <Video
               ref={video}
-              style={{ height: 215, width: "100%" }}
+              style={{ height: 220, width: "100%" }}
               source={data.src}
               useNativeControls
               resizeMode="contain"
@@ -76,17 +78,6 @@ export default function VideoEdukasi() {
             />
           </View>
         ))}
-        <Video
-          ref={video}
-          style={styles.video}
-          source={{
-            uri: "http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4",
-          }}
-          useNativeControls
-          resizeMode="contain"
-          isLooping
-          onPlaybackStatusUpdate={setStatus}
-        />
       </ScrollView>
     </LinearGradient>
   );

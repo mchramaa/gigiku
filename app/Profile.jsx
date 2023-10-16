@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { Image, StyleSheet, Text, View } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { ScrollView } from "react-native-gesture-handler";
 import Animated, {
@@ -14,6 +14,7 @@ import TabSetName from "./components/TabSetName";
 import * as SQLite from "expo-sqlite";
 import { useAuth } from "./hooks/useAuth.zustand";
 import MaskotHello from "../assets/lottie/MaskotHello";
+import LotHello from "../assets/lottie/LotHello";
 
 export default function Profile() {
   /**
@@ -75,60 +76,78 @@ export default function Profile() {
   }
 
   return (
-    <LinearGradient colors={["#00B4D8", "white"]}>
-      <View style={{ height: "100%", marginTop: 45 }}>
-        <ScrollView
-          showsVerticalScrollIndicator={false}
-          contentContainerStyle={{
-            height: "100%",
-            alignItems: "center",
+    <LinearGradient colors={["#00B4D8", "white"]} style={{ width: "100%" }}>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{
+          alignItems: "center",
+          paddingHorizontal: 30,
+          height: "100%",
+        }}
+      >
+        <LotHello
+          style={{
+            width: 200,
+            height: 200,
+            marginBottom: -90,
+            marginTop: -20,
+          }}
+        />
+        <MaskotHello />
+        <View
+          style={{
+            width: "100%",
+            height: 200,
+            marginTop: 30,
+            backgroundColor: "white",
+            borderRadius: 15,
+            elevation: 8,
             paddingHorizontal: 30,
+            alignItems: "center",
+            justifyContent: "center",
+            position: "relative",
+            overflow: "hidden",
           }}
         >
-          <MaskotHello />
-          <View
+          <Text
             style={{
-              width: "100%",
-              height: 200,
-              marginTop: 30,
-              backgroundColor: "white",
-              borderRadius: 15,
-              elevation: 8,
-              paddingHorizontal: 30,
-              alignItems: "center",
-              justifyContent: "center",
-              position: "relative",
-              overflow: "hidden",
+              fontFamily: "Poppins-SemiBold",
+              fontSize: 20,
+              color: "#00B4D8",
             }}
           >
-            <Text
-              style={{
-                fontFamily: "Poppins-SemiBold",
-                fontSize: 20,
-                color: "#00B4D8",
-              }}
-            >
-              Nama :
-            </Text>
-            <Text style={{ fontFamily: "Poppins-SemiBold", fontSize: 25 }}>
-              {user.name}
-            </Text>
-            <BlueButton
-              tittle="Ubah"
-              onPress={changeNameBTN}
-              width={100}
-              height={45}
+            Nama :
+          </Text>
+          <Text style={{ fontFamily: "Poppins-SemiBold", fontSize: 25 }}>
+            {user.name}
+          </Text>
+          <BlueButton
+            tittle="Ubah"
+            onPress={changeNameBTN}
+            width={100}
+            height={45}
+          />
+          <Animated.View style={[styles.boxSetName, animSetName]}>
+            <TabSetName
+              onPress={saveNameBTN}
+              buttonName="Simpan"
+              handleInputName={handleInputName}
             />
-            <Animated.View style={[styles.boxSetName, animSetName]}>
-              <TabSetName
-                onPress={saveNameBTN}
-                buttonName="Simpan"
-                handleInputName={handleInputName}
-              />
-            </Animated.View>
-          </View>
-        </ScrollView>
-      </View>
+          </Animated.View>
+        </View>
+        <View
+          style={{ position: "absolute", bottom: 20, alignItems: "center" }}
+        >
+          <Image
+            source={require("../assets/icon/iconLogo.png")}
+            style={{
+              width: 200,
+              height: 100,
+            }}
+          />
+          <Text>V.01.0</Text>
+        </View>
+      </ScrollView>
     </LinearGradient>
   );
 }

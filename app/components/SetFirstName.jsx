@@ -3,7 +3,7 @@ import { View } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import Constants from "expo-constants";
 import TabSetName from "./TabSetName";
-import LotHello from "../../assets/lottie/Hello";
+import LotHello from "../../assets/lottie/LotHello";
 import MaskotHello from "../../assets/lottie/MaskotHello";
 import { useState } from "react";
 import * as SQLite from "expo-sqlite";
@@ -64,7 +64,7 @@ export default function SetFirstName({ navigation }) {
               elevation: 10,
             }}
           >
-            <LotHello />
+            <LotHello style={{ width: 200, height: 200, marginBottom: -90 }} />
             <MaskotHello />
             <View
               style={{

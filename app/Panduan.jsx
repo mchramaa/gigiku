@@ -45,7 +45,7 @@ export default function Panduan() {
     },
     {
       src: require("../assets/video/Step3.webm"),
-      note: "Tuangkan Pasta gigi pada sikat gigi sebesar biji jagung",
+      note: "Gosok Gigi Kanan Ke kiri untuk membersihkan sela sela gigi",
     },
     {
       src: require("../assets/video/Step4.webm"),
