@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import * as SQLite from "expo-sqlite";
+import { ltrimFirstZero } from "../helpers/ltrimZero";
 
 export default function AlarmBox({
   tittle,
